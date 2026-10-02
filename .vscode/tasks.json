@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "DITA: Build HTML5",
+      "type": "shell",
+      "command": "dita -i ${file} -f html5 -o ${workspaceFolder}/out/html5",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "DITA: Build PDF",
+      "type": "shell",
+      "command": "dita -i ${file} -f pdf -o ${workspaceFolder}/out/pdf",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}

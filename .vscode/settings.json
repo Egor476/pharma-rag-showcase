@@ -1,0 +1,7 @@
+{
+  "xml.catalogs": [
+    "C:\\Program Files\\dita-ot-4.4.1\\catalog-dita.xml"
+  ],
+  "ditacraft.ditaOtPath": "C:\\Program Files\\dita-ot-4.4.1",
+  "ditacraft.defaultTranstype": "html5"
+}
