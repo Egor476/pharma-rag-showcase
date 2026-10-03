@@ -1,7 +1,23 @@
 {
   "xml.catalogs": [
-    "C:\\Program Files\\dita-ot-4.4.1\\catalog-dita.xml"
+    "C:\\Program Files\\dita-ot-4.4.1\\catalog-dita.xml",
+    "${workspaceFolder}/schemas/dita-pharma-catalog.xml"
+  ],
+  "xml.validation.enabled": true,
+  "xml.fileAssociations": [
+    {
+      "systemId": "subjectScheme.dtd",
+      "pattern": "**/taxonomy/*.ditamap"
+    },
+    {
+      "systemId": "map.dtd",
+      "pattern": "**/*.ditamap"
+    },
+    {
+      "systemId": "topic.dtd",
+      "pattern": "**/*.dita"
+    }
   ],
   "ditacraft.ditaOtPath": "C:\\Program Files\\dita-ot-4.4.1",
-  "ditacraft.defaultTranstype": "html5"
-}
+  "ditacraft.defaultTranstype": "html5",
+  }
