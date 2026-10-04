@@ -1,4 +1,29 @@
-<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic id="onc_product_a_dosage">
-  <title>Oncology Product A Dosage</title>
-</topic>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="onco_product_a_dosage" audience="hcp oncologist" product="onco_product_a" otherprops="dosing_guidelines">
+  <title>Oncology Product A: Dosage Instructions for 2 mg/kg IV Administration</title>
+  <shortdesc>Instruction for administering Oncology Product A at a dose of 2 mg/kg IV.</shortdesc>
+  <taskbody>
+    <prereq>
+      <p>Verify patient's weight and confirm eligibility for Oncology Product A treatment.</p>
+    </prereq>
+    <steps>
+      <step>
+        <cmd>Calculate the total dose of Oncology Product A based on the patient's weight (2 mg/kg).</cmd>
+        <stepxmp>A 70 kg patient requires a total dose of 140 mg (70 kg × 2 mg/kg).</stepxmp>
+      </step>
+      <step>
+        <cmd>Flush IV line with 0.9% sodium chloride injection before administration.</cmd>
+        <stepresult>The IV line appears clear without cloudiness or precipitate.</stepresult>
+      </step>
+      <step>
+        <cmd>Administer Oncology Product A at a dose of 2 mg/kg IV over 15 minutes.</cmd>
+        <info>Monitor patient's vital signs and adjust dosage as necessary.</info>
+      </step>
+      <step>
+        <cmd>Flush IV line with 0.9% sodium chloride injection after administration.</cmd>
+        <stepresult>The IV line appears clear without cloudiness or precipitate.</stepresult>
+      </step>
+    </steps>
+  </taskbody>
+</task>
