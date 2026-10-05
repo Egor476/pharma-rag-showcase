@@ -34,6 +34,7 @@
             <subjectdef keys="precautions" navtitle="Precautions"/>
         </subjectdef>
         <subjectdef keys="adverse_reactions" navtitle="Adverse Reactions"/>
+        <subjectdef keys="internal_notes" navtitle="Internal Notes"/>
     </subjectdef>
 
 <!-- Product keys to product attribute -->

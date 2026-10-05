@@ -7,6 +7,11 @@
     <prereq>
       <p>Confirm patient's eligibility for Product A treatment.</p>
     </prereq>
+    <context>
+      <p audience="patient">
+        Take this medication exactly as prescribed by your doctor. If you miss a dose, call your care team immediately.
+      </p>
+    </context>
     <steps>
       <step>
         <cmd>Calculate the total dose of Product A based on the patient's weight (2 mg/kg).</cmd>

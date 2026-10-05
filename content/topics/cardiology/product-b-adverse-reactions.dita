@@ -53,5 +53,11 @@
         <li>Ventricular Arrhythmia: Isolated cases of non-sustained ventricular tachycardia reported during rapid intravenous bolus administration.</li>
       </ul>
     </section>
+    <section id="internal_notes" otherprops="internal_notes">
+      <title>Internal Review Notes</title>
+      <p>These notes are intended for internal regulatory review and should not be included in patient-facing materials.</p>
+      <p>Adverse reaction data is based on clinical trial populations; post-marketing surveillance may yield additional insights.</p>
+      <p>Ensure that all adverse reaction frequencies are updated in accordance with the latest clinical trial data and post-marketing reports.</p>
+    </section>
   </refbody>
 </reference>

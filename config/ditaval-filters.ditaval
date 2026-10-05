@@ -1,1 +1,6 @@
-<val></val>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<val>
+    <prop action="exclude" att="otherprops" val="internal_notes"/>
+    <prop action="exclude" att="audience" val="patient"/>
+</val>
