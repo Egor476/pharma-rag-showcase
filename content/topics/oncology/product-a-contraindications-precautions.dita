@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="onco_product_a_contraindications_precautions" audience="hcp oncologist" product="onco_product_a" otherprops="contraindications precautions">
-  <title>Oncology Product A: Contraindications and Precautions</title>
-  <shortdesc>Information on safety and contraindications for Oncology Product A.</shortdesc>
+<reference id="product_a_contraindications_precautions" audience="hcp oncologist" product="product_a" otherprops="contraindications precautions">
+  <title>Product A: Contraindications and Precautions</title>
+  <shortdesc>Information on safety and contraindications for Product A.</shortdesc>
   <refbody>
     <section id="contraindications">
       <title>Contraindications</title>
-      <p>Oncology Product A is contraindicated in patients with the following conditions:</p>
+      <p>Product A is contraindicated in patients with the following conditions:</p>
       <ul>
-        <li>Known severe hypersensitivity to Oncology Product A or any of its excipients.</li>
+        <li>Known severe hypersensitivity to Product A or any of its excipients.</li>
         <li>Severe baseline myelosuppression (absolute neutrophil count &lt; 500/mm³ or platelet count &lt; 50,000/mm³).</li>
         <li>Severe hepatic impairment (total bilirubin &gt; 3x upper limit of normal).</li>
       </ul>
     </section>
     <section id="precautions">
       <title>Precautions</title>
-      <p>Before administering Oncology Product A, consider the following safety precautions:</p>
+      <p>Before administering Product A, consider the following safety precautions:</p>
       <ul>
         <li>Monitor complete blood counts (CBC) prior to initiating each cycle and routinely during treatment.</li>
         <li>Assess for signs of febrile neutropenia or active systemic infection before each dose.</li>

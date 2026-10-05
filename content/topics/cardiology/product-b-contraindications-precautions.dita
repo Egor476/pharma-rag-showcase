@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="cardio_product_b_contraindications_precautions" audience="hcp cardiologist" product="cardio_product_b" otherprops="contraindications precautions">
-  <title>Cardio Product B: Contraindications and Precautions</title>
-  <shortdesc>Information on safety, contraindications, and precautions for Cardio Product B.</shortdesc>
+<reference id="product_b_contraindications_precautions" audience="hcp cardiologist" product="product_b" otherprops="contraindications precautions">
+  <title>Product B: Contraindications and Precautions</title>
+  <shortdesc>Information on safety, contraindications, and precautions for Product B.</shortdesc>
   <refbody>
     <section id="contraindications">
       <title>Contraindications</title>
-      <p>Cardio Product B is contraindicated in patients with the following conditions:</p>
+      <p>Product B is contraindicated in patients with the following conditions:</p>
       <ul>
-        <li>Known severe hypersensitivity to Cardio Product B or any of its excipients.</li>
+        <li>Known severe hypersensitivity to Product B or any of its excipients.</li>
         <li>Severe cardiogenic shock or uncompensated heart failure requiring inotropic support.</li>
         <li>Second-degree or third-degree atrioventricular (AV) block in the absence of a functioning pacemaker.</li>
       </ul>
     </section>
     <section id="precautions">
       <title>Precautions</title>
-      <p>Before administering Cardio Product B, consider the following safety precautions:</p>
+      <p>Before administering Product B, consider the following safety precautions:</p>
       <ul>
         <li>Monitor blood pressure and continuous electrocardiogram (ECG) during administration.</li>
         <li>Assess baseline renal function and serum potassium levels prior to initiating treatment.</li>

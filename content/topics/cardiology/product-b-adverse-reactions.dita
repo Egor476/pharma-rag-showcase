@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="cardio_product_b_adverse_reactions" audience="hcp cardiologist" product="cardio_product_b" otherprops="adverse_reactions">
-  <title>Cardio Product B: Adverse Reactions</title>
-  <shortdesc>Summary of adverse events and hemodynamic reactions associated with Cardio Product B administration.</shortdesc>
+<reference id="product_b_adverse_reactions" audience="hcp cardiologist" product="product_b" otherprops="adverse_reactions">
+  <title>Product B: Adverse Reactions</title>
+  <shortdesc>Summary of adverse events and hemodynamic reactions associated with Product B administration.</shortdesc>
   <refbody>
     <section id="common_adverse_reactions">
       <title>Common Adverse Reactions</title>
-      <p>The following adverse reactions occurred in ≥ 5% of patients during clinical evaluation of Cardio Product B:</p>
+      <p>The following adverse reactions occurred in ≥ 5% of patients during clinical evaluation of Product B:</p>
       <table>
         <tgroup cols="3">
           <colspec colname="c1" colwidth="1*"/>

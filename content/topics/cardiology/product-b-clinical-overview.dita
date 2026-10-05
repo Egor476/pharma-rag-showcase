@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="product_b_clinical_overview" audience="hcp cardiologist" product="product_b" otherprops="clinical_overview">
+  <title>Product B: Clinical Overview</title>
+  <shortdesc>Product B is a cutting-edge cardiology drug designed to treat various cardiovascular conditions.</shortdesc>
+  <conbody>
+    <p>Product B is an injectable medication that targets specific molecular pathways in the cardiovascular system, leading to its modulation and regulation.</p>
+    <section id="mechanism_of_action">
+      <title>Mechanism of Action</title>
+      <p>Product B works by selectively binding to specific receptors in the cardiovascular system, thereby:</p>
+      <ul>
+        <li>Reducing inflammation.</li>
+        <li>Improving vasodilation.</li>
+        <li>Potentiating the effects of natural vasodilators.</li>
+      </ul>
+    </section>
+  </conbody>
+</concept>

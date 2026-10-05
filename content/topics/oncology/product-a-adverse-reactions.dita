@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="onco_product_a_adverse_reactions" audience="hcp oncologist" product="onco_product_a" otherprops="adverse_reactions">
-  <title>Oncology Product A: Adverse Reactions</title>
-  <shortdesc>Summary of clinical trial and post-marketing adverse reactions observed with Oncology Product A.</shortdesc>
+<reference id="product_a_adverse_reactions" audience="hcp oncologist" product="product_a" otherprops="adverse_reactions">
+  <title>Product A: Adverse Reactions</title>
+  <shortdesc>Summary of clinical trial and post-marketing adverse reactions observed with Product A.</shortdesc>
   <refbody>
     <section id="common_adverse_reactions">
       <title>Common Adverse Reactions</title>
-      <p>The following adverse reactions occurred in ≥ 10% of patients receiving Oncology Product A in clinical trials:</p>
+      <p>The following adverse reactions occurred in ≥ 10% of patients receiving Product A in clinical trials:</p>
       <table>
         <tgroup cols="3">
           <colspec colname="c1" colwidth="1*"/>

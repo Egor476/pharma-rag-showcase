@@ -8,10 +8,10 @@
 <!-- Products -->
     <subjectdef keys="therapeutic_products" navtitle="Therapeutic Products">
     <subjectdef keys="oncology_products" navtitle="Oncology Products">
-      <subjectdef keys="onco_product_a" navtitle="Oncology Product A"/>
+      <subjectdef keys="product_a" navtitle="Product A"/>
     </subjectdef>
     <subjectdef keys="cardiology_products" navtitle="Cardiology Products">
-      <subjectdef keys="cardio_product_b" navtitle="Cardio Product B"/>
+      <subjectdef keys="product_b" navtitle="Product B"/>
     </subjectdef>
   </subjectdef>
 
@@ -27,8 +27,8 @@
 
 <!-- Content intent -->
     <subjectdef keys="content_intent" navtitle="Information Intent">
-        <subjectdef keys="clinical_overview" navtitle="Clinical Overview and Mechanism"/>
-        <subjectdef keys="dosing_guidelines" navtitle="Dosing and Administration"/>
+        <subjectdef keys="clinical_overview" navtitle="Clinical Overview"/>
+        <subjectdef keys="dosage_administration" navtitle="Dosage Administration"/>
         <subjectdef keys="safety_information" navtitle="Safety Information">
             <subjectdef keys="contraindications" navtitle="Contraindications"/>
             <subjectdef keys="precautions" navtitle="Precautions"/>
