@@ -1,0 +1,31 @@
+{
+  "doc_id": "product-b-clinical-overview",
+  "title": "Product B: Clinical Overview",
+  "shortdesc": "Product B is a cutting-edge cardiology drug designed to treat various cardiovascular conditions.",
+  "sections": [
+    {
+      "section_title": "Overview & Context",
+      "content": "Product B is an injectable medication that targets specific molecular pathways in the cardiovascular system, leading to its modulation and regulation.\nMechanism of Action\n      Product B works by selectively binding to specific receptors in the cardiovascular system, thereby:\n      \n        Reducing inflammation.\n        Improving vasodilation.\n        Potentiating the effects of natural vasodilators."
+    },
+    {
+      "section_title": "Mechanism of Action",
+      "content": "Product B works by selectively binding to specific receptors in the cardiovascular system, thereby:\n- Reducing inflammation.\n- Improving vasodilation.\n- Potentiating the effects of natural vasodilators."
+    }
+  ],
+  "metadata": {
+    "source_file": "product-b-clinical-overview.dita",
+    "category": "cardiology",
+    "product": "product_b",
+    "audience": "cardiologist, hcp, user_audience",
+    "otherprops": "clinical_overview, content_intent",
+    "audience_list": [
+      "cardiologist",
+      "hcp",
+      "user_audience"
+    ],
+    "otherprops_list": [
+      "clinical_overview",
+      "content_intent"
+    ]
+  }
+}

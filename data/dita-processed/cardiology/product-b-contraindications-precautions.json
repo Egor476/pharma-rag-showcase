@@ -1,0 +1,37 @@
+{
+  "doc_id": "product-b-contraindications-precautions",
+  "title": "Product B: Contraindications and Precautions",
+  "shortdesc": "Information on safety, contraindications, and precautions for Product B.",
+  "sections": [
+    {
+      "section_title": "Overview & Context",
+      "content": "Contraindications\n      Product B is contraindicated in patients with the following conditions:\n      \n        Known severe hypersensitivity to Product B or any of its excipients.\n        Severe cardiogenic shock or uncompensated heart failure requiring inotropic support.\n        Second-degree or third-degree atrioventricular (AV) block in the absence of a functioning pacemaker.\nPrecautions\n      Before administering Product B, consider the following safety precautions:\n      \n        Monitor blood pressure and continuous electrocardiogram (ECG) during administration.\n        Assess baseline renal function and serum potassium levels prior to initiating treatment.\n        Use with caution in patients receiving concurrent beta-blockers or calcium channel blockers due to the risk of additive bradycardia."
+    },
+    {
+      "section_title": "Contraindications",
+      "content": "Product B is contraindicated in patients with the following conditions:\n- Known severe hypersensitivity to Product B or any of its excipients.\n- Severe cardiogenic shock or uncompensated heart failure requiring inotropic support.\n- Second-degree or third-degree atrioventricular (AV) block in the absence of a functioning pacemaker."
+    },
+    {
+      "section_title": "Precautions",
+      "content": "Before administering Product B, consider the following safety precautions:\n- Monitor blood pressure and continuous electrocardiogram (ECG) during administration.\n- Assess baseline renal function and serum potassium levels prior to initiating treatment.\n- Use with caution in patients receiving concurrent beta-blockers or calcium channel blockers due to the risk of additive bradycardia."
+    }
+  ],
+  "metadata": {
+    "source_file": "product-b-contraindications-precautions.dita",
+    "category": "cardiology",
+    "product": "product_b",
+    "audience": "cardiologist, hcp, user_audience",
+    "otherprops": "content_intent, contraindications, precautions, safety_information",
+    "audience_list": [
+      "cardiologist",
+      "hcp",
+      "user_audience"
+    ],
+    "otherprops_list": [
+      "content_intent",
+      "contraindications",
+      "precautions",
+      "safety_information"
+    ]
+  }
+}

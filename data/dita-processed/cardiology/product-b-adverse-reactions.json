@@ -1,0 +1,35 @@
+{
+  "doc_id": "product-b-adverse-reactions",
+  "title": "Product B: Adverse Reactions",
+  "shortdesc": "Summary of adverse events and hemodynamic reactions associated with Product B administration.",
+  "sections": [
+    {
+      "section_title": "Overview & Context",
+      "content": "Common Adverse Reactions\n      The following adverse reactions occurred in \u2265 5% of patients during clinical evaluation of Product B:\n      \n        \n          \n          \n          \n          \n            \n              Adverse Reaction\n              Incidence (%)\n              Clinical Severity\n            \n          \n          \n            \n              Hypotension (Systolic BP < 90 mmHg)\n              18%\n              Mild to Moderate\n            \n            \n              Bradycardia (< 50 bpm)\n              12%\n              Moderate\n            \n            \n              Headache\n              9%\n              Mild\n            \n            \n              Dizziness / Lightheadedness\n              7%\n              Mild\nSerious Adverse Reactions\n      Potentially life-threatening hemodynamic disturbances requiring immediate monitoring or treatment cessation:\n      \n        Symptomatic AV Block: First-degree or Mobitz Type I AV block observed in 2% of patients. Discontinue infusion if high-grade AV block develops.\n        Severe Hypotension / Shock: Rapid BP drop requiring IV fluids or vasopressor support observed in 1.5% of patients.\n        Ventricular Arrhythmia: Isolated cases of non-sustained ventricular tachycardia reported during rapid intravenous bolus administration."
+    },
+    {
+      "section_title": "Common Adverse Reactions",
+      "content": "The following adverse reactions occurred in \u2265 5% of patients during clinical evaluation of Product B:\nAdverse Reaction | Incidence (%) | Clinical Severity\nHypotension (Systolic BP < 90 mmHg) | 18% | Mild to Moderate\nBradycardia (< 50 bpm) | 12% | Moderate\nHeadache | 9% | Mild\nDizziness / Lightheadedness | 7% | Mild"
+    },
+    {
+      "section_title": "Serious Adverse Reactions",
+      "content": "Potentially life-threatening hemodynamic disturbances requiring immediate monitoring or treatment cessation:\n- Symptomatic AV Block: First-degree or Mobitz Type I AV block observed in 2% of patients. Discontinue infusion if high-grade AV block develops.\n- Severe Hypotension / Shock: Rapid BP drop requiring IV fluids or vasopressor support observed in 1.5% of patients.\n- Ventricular Arrhythmia: Isolated cases of non-sustained ventricular tachycardia reported during rapid intravenous bolus administration."
+    }
+  ],
+  "metadata": {
+    "source_file": "product-b-adverse-reactions.dita",
+    "category": "cardiology",
+    "product": "product_b",
+    "audience": "cardiologist, hcp, user_audience",
+    "otherprops": "adverse_reactions, content_intent",
+    "audience_list": [
+      "cardiologist",
+      "hcp",
+      "user_audience"
+    ],
+    "otherprops_list": [
+      "adverse_reactions",
+      "content_intent"
+    ]
+  }
+}

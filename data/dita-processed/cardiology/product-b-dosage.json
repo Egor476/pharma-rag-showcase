@@ -1,0 +1,27 @@
+{
+  "doc_id": "product-b-dosage",
+  "title": "Product B: Dosage Administration",
+  "shortdesc": "Instruction for administering Product B at a dose of 2 mg/kg IV.",
+  "sections": [
+    {
+      "section_title": "Overview & Context",
+      "content": "Confirm patient's eligibility for Product B treatment.\nStep 1: Calculate the total dose of Product B based on the patient's weight (2 mg/kg). (Example: For example, a 70 kg patient requires a total dose of 140 mg (70 kg \u00d7 2 mg/kg).)\nStep 2: Flush IV line with 0.9% sodium chloride injection before administration. Result: Make sure that the IV line appears clear without cloudiness or precipitate.\nStep 3: Administer Product B at a dose of 2 mg/kg IV over 10 minutes. Note: Monitor patient's vital signs and adjust dosage as necessary.\nStep 4: Flush IV line with 0.9% sodium chloride injection after administration. Result: Make sure that the IV line appears clear without cloudiness or precipitate."
+    }
+  ],
+  "metadata": {
+    "source_file": "product-b-dosage.dita",
+    "category": "cardiology",
+    "product": "product_b",
+    "audience": "cardiologist, hcp, user_audience",
+    "otherprops": "content_intent, dosage_administration",
+    "audience_list": [
+      "cardiologist",
+      "hcp",
+      "user_audience"
+    ],
+    "otherprops_list": [
+      "content_intent",
+      "dosage_administration"
+    ]
+  }
+}

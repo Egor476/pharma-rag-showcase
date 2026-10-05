@@ -234,5 +234,5 @@ def process_all_topics(dry_run: bool = False):
 
 if __name__ == "__main__":
     # Set False to generate output files in data/dita-processed/
-    DRY_RUN_MODE = True
+    DRY_RUN_MODE = False
     process_all_topics(dry_run=DRY_RUN_MODE)
