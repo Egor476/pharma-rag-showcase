@@ -1,0 +1,28 @@
+# Local Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# Python Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Vector Database Data & Local Stores
+# (Exclude generated Chroma DB files and intermediate processing outputs)
+data/chroma-db/
+data/dita-processed/
+
+# IDE & Editor Settings
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
