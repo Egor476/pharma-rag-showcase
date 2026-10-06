@@ -38,7 +38,7 @@ taxonomy:
 
     # Content intent
     - key: content_intent
-      title: Information Intent
+      title: Content Intent
       children:
         - key: clinical_overview
           title: Clinical Overview
