@@ -1,6 +1,10 @@
+import os
 import json
-import lxml.etree as etree  # type: ignore
 from pathlib import Path
+import lxml.etree as etree  # type: ignore
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Anchors all paths relative to project root
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -9,7 +13,8 @@ PROJECT_ROOT = SCRIPT_DIR.parent
 CONTENT_DIR = PROJECT_ROOT / "content" / "topics"
 DITAVAL_PATH = PROJECT_ROOT / "config" / "ditaval-filters.ditaval"
 TAXONOMY_PATH = PROJECT_ROOT / "content" / "taxonomy" / "pharma-product-taxonomy.ditamap"
-OUTPUT_DIR = PROJECT_ROOT / "data" / "dita-processed"
+DATA_PROCESSED_DIR = PROJECT_ROOT / "data" / "dita-processed"
+SCHEMAS_DIR = PROJECT_ROOT / os.getenv("SCHEMAS_DIR", "schemas")
 
 
 def load_ditaval_rules(ditaval_file: Path) -> list[tuple[str, str]]:
@@ -223,7 +228,7 @@ def process_all_topics(dry_run: bool = False):
             print("\n")
         else:
             rel_path = dita_file.relative_to(CONTENT_DIR)
-            out_file = OUTPUT_DIR / rel_path.parent / f"{dita_file.stem}.json"
+            out_file = DATA_PROCESSED_DIR / rel_path.parent / f"{dita_file.stem}.json"
             out_file.parent.mkdir(parents=True, exist_ok=True)
 
             with open(out_file, "w", encoding="utf-8") as f:

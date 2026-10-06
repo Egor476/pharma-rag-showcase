@@ -1,3 +1,12 @@
-<xml>   
-    
-</xml>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalog PUBLIC "-//OASIS//DTD XML Catalogs V1.1//EN" "http://www.oasis-open.org/committees/entity/release/1.1/catalog.dtd">
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+    <public publicId="-//OASIS//DTD DITA Topic//EN" uri="urn:oasis:names:tc:dita:xmlns:topic"/>
+    <public publicId="-//OASIS//DTD DITA Concept//EN" uri="urn:oasis:names:tc:dita:xmlns:concept"/>
+    <public publicId="-//OASIS//DTD DITA Reference//EN" uri="urn:oasis:names:tc:dita:xmlns:reference"/>
+    <public publicId="-//OASIS//DTD DITA Task//EN" uri="urn:oasis:names:tc:dita:xmlns:task"/>
+    <public publicId="-//OASIS//DTD DITA Map//EN" uri="urn:oasis:names:tc:dita:xmlns:map"/>
+    <public publicId="-//OASIS//DTD DITA Subject Scheme Map//EN" uri="urn:oasis:names:tc:dita:xmlns:subjectScheme"/>
+
+</catalog>
