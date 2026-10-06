@@ -26,7 +26,7 @@
     </subjectdef>
 
 <!-- Content intent -->
-    <subjectdef keys="content_intent" navtitle="Information Intent">
+    <subjectdef keys="content_intent" navtitle="Content Intent">
         <subjectdef keys="clinical_overview" navtitle="Clinical Overview"/>
         <subjectdef keys="dosage_administration" navtitle="Dosage Administration"/>
         <subjectdef keys="safety_information" navtitle="Safety Information">

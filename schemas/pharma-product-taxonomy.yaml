@@ -1,0 +1,68 @@
+taxonomy:
+  id: pharma_product_taxonomy
+  language: en-US
+  title: Pharma Product Taxonomy
+
+  subjects:
+    # Products
+    - key: therapeutic_products
+      title: Therapeutic Products
+      children:
+        - key: oncology_products
+          title: Oncology Products
+          children:
+            - key: product_a
+              title: Product A
+
+        - key: cardiology_products
+          title: Cardiology Products
+          children:
+            - key: product_b
+              title: Product B
+
+    # Audience
+    - key: user_audience
+      title: User Audience
+      children:
+        - key: hcp
+          title: Healthcare Provider (HCP)
+          children:
+            - key: oncologist
+              title: Oncologist
+            - key: cardiologist
+              title: Cardiologist
+        - key: patient
+          title: Patient
+        - key: internal_regulatory
+          title: Regulatory Reviewer
+
+    # Content intent
+    - key: content_intent
+      title: Information Intent
+      children:
+        - key: clinical_overview
+          title: Clinical Overview
+        - key: dosage_administration
+          title: Dosage Administration
+        - key: safety_information
+          title: Safety Information
+          children:
+            - key: contraindications
+              title: Contraindications
+            - key: precautions
+              title: Precautions
+        - key: adverse_reactions
+          title: Adverse Reactions
+        - key: internal_notes
+          title: Internal Notes
+
+  # Attribute mappings
+  enumerations:
+    - attribute: product
+      subject_keyref: therapeutic_products
+
+    - attribute: audience
+      subject_keyref: user_audience
+
+    - attribute: otherprops
+      subject_keyref: content_intent
