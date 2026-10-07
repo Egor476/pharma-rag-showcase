@@ -1,7 +1,7 @@
 {
   "prompt_id": "fallback_v1",
   "version": "1.0.0",
-  "task_type": "fallback",
+  "task_type": "fallback_unrelated",
   "system_prompt_ref": "pharma_fallback_v1",
   "model_config": {
     "model": "llama3",
@@ -18,6 +18,6 @@
     "strict_grounding_required": true,
     "citation_required": false,
     "prohibit_off_label": true,
-    "target_audience": "all_audiences"
+    "target_audience": "general"
   }
 }
