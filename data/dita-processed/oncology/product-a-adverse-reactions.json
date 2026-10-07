@@ -4,12 +4,8 @@
   "shortdesc": "Summary of clinical trial and post-marketing adverse reactions observed with Product A.",
   "sections": [
     {
-      "section_title": "Overview & Context",
-      "content": "Common Adverse Reactions\n      The following adverse reactions occurred in \u2265 10% of patients receiving Product A in clinical trials:\n      \n        \n          \n          \n          \n          \n            \n              Adverse Reaction\n              All Grades (%)\n              Grade 3\u20134 (%)\n            \n          \n          \n            \n              Neutropenia\n              68%\n              32%\n            \n            \n              Fatigue\n              54%\n              8%\n            \n            \n              Nausea and Vomiting\n              42%\n              4%\n            \n            \n              Thrombocytopenia\n              28%\n              12%\nSerious Adverse Reactions\n      Clinically significant adverse reactions requiring medical intervention or dosage modification include:\n      \n        Febrile Neutropenia: Occurred in 5% of patients. Discontinue treatment immediately and initiate broad-spectrum anti-infectives.\n        Hepatotoxicity: Elevated transaminases (ALT/AST > 5x ULN) observed in 3% of patients. Dose interruption or reduction required.\n        Infusion-Related Reactions: Severe hypersensitivity occurred in 2% of patients during initial infusion."
-    },
-    {
       "section_title": "Common Adverse Reactions",
-      "content": "The following adverse reactions occurred in \u2265 10% of patients receiving Product A in clinical trials:\nAdverse Reaction | All Grades (%) | Grade 3\u20134 (%)\nNeutropenia | 68% | 32%\nFatigue | 54% | 8%\nNausea and Vomiting | 42% | 4%\nThrombocytopenia | 28% | 12%"
+      "content": "The following adverse reactions occurred in \u2265 10% of patients receiving Product A in clinical trials:\nNeutropenia | 68% | 32%\nFatigue | 54% | 8%\nNausea and Vomiting | 42% | 4%\nThrombocytopenia | 28% | 12%"
     },
     {
       "section_title": "Serious Adverse Reactions",

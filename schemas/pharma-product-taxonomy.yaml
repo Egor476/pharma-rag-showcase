@@ -53,6 +53,11 @@ taxonomy:
               title: Precautions
         - key: adverse_reactions
           title: Adverse Reactions
+          children:
+            - key: common_adverse_reactions
+              title: Common Adverse Reactions
+            - key: serious_adverse_reactions
+              title: Serious Adverse Reactions
         - key: internal_notes
           title: Internal Notes
 

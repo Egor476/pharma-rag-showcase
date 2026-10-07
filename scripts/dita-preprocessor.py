@@ -6,22 +6,33 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Anchors all paths relative to project root
+# Anchors all paths relative to project root (scripts/ -> rag-showcase/)
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
 
 CONTENT_DIR = PROJECT_ROOT / "content" / "topics"
 DITAVAL_PATH = PROJECT_ROOT / "config" / "ditaval-filters.ditaval"
-TAXONOMY_PATH = PROJECT_ROOT / "content" / "taxonomy" / "pharma-product-taxonomy.ditamap"
+TAXONOMY_XML_PATH = PROJECT_ROOT / "content" / "taxonomy" / "pharma-product-taxonomy.ditamap"
 DATA_PROCESSED_DIR = PROJECT_ROOT / "data" / "dita-processed"
-SCHEMAS_DIR = PROJECT_ROOT / os.getenv("SCHEMAS_DIR", "schemas")
+
+
+def verify_environment_paths():
+    """Prints diagnostic information to help debug missing file issues."""
+    print("=== Path Diagnostics ===")
+    print(f"Current Working Directory : {Path.cwd()}")
+    print(f"Script Directory         : {SCRIPT_DIR}")
+    print(f"Project Root Directory   : {PROJECT_ROOT}")
+    print(f"Content Directory Exists : {CONTENT_DIR.exists()} ({CONTENT_DIR})")
+    print(f"DITAVAL Path Exists      : {DITAVAL_PATH.exists()} ({DITAVAL_PATH})")
+    print(f"Taxonomy XML Exists      : {TAXONOMY_XML_PATH.exists()} ({TAXONOMY_XML_PATH})")
+    print("========================\n")
 
 
 def load_ditaval_rules(ditaval_file: Path) -> list[tuple[str, str]]:
     """Parses config/ditaval-filters.ditaval for action='exclude' rules."""
     exclude_rules = []
     if not ditaval_file.exists():
-        print(f"Warning: {ditaval_file} not found. Proceeding without filtering.")
+        print(f"Warning: Ditaval filter file '{ditaval_file}' not found. Proceeding without filtering.")
         return exclude_rules
 
     tree = etree.parse(str(ditaval_file))
@@ -43,13 +54,12 @@ def parse_taxonomy_hierarchy(taxonomy_file: Path) -> dict[str, list[str]]:
     """
     hierarchy_map = {}
     if not taxonomy_file.exists():
-        print(f"Warning: Taxonomy map {taxonomy_file} not found.")
+        print(f"Warning: Taxonomy XML map '{taxonomy_file}' not found.")
         return hierarchy_map
 
     tree = etree.parse(str(taxonomy_file))
     root = tree.getroot()
 
-    # Traverses subjectdef nodes recursively to build parent chains
     def traverse_subject(elem, parent_chain):
         key = elem.get("keys")
         if key:
@@ -102,7 +112,7 @@ def apply_ditaval_filtering(root, exclude_rules: list[tuple[str, str]]):
 def extract_table_text(table_elem) -> str:
     """Flattens DITA <table> elements into plain text tables."""
     rows_text = []
-    headers = [th.text.strip() for th in table_elem.findall(".//thead//entry") if th.text]
+    headers = [th.text.strip() for th in table_elem.findall(".//thead//entry") if th and th.text]
     if headers:
         rows_text.append(" | ".join(headers))
 
@@ -114,12 +124,18 @@ def extract_table_text(table_elem) -> str:
     return "\n".join(rows_text)
 
 
-def extract_node_text(node) -> str:
-    """Extracts text from paragraphs, lists, tables, and task steps."""
+def extract_node_text(node, exclude_sections: bool = False) -> str:
+    """
+    Extracts text from paragraphs, lists, tables, and task steps.
+    If exclude_sections is True, skips child <section> tags so top-level body text 
+    extraction doesn't duplicate section contents into an 'Overview & Context' section.
+    """
     text_chunks = []
 
     for elem in node:
         if elem.tag == "title":
+            continue
+        if exclude_sections and elem.tag == "section":
             continue
 
         if elem.tag == "table":
@@ -183,12 +199,23 @@ def parse_dita_topic(file_path: Path, exclude_rules: list[tuple[str, str]], taxo
     body = root.find("refbody") or root.find("conbody") or root.find("taskbody")
 
     if body is not None:
-        direct_text = extract_node_text(body)
+        # Pass exclude_sections=True to avoid creating a duplicate Overview & Context block
+        direct_text = extract_node_text(body, exclude_sections=True)
         if direct_text:
             sections.append({"section_title": "Overview & Context", "content": direct_text})
 
         for sec in body.findall("section"):
-            sec_title = sec.findtext("title") or "Section"
+            sec_title = sec.findtext("title")
+            
+            # Fallback to formatting section ID (e.g. 'product_description' -> 'Product Description')
+            # if no explicit <title> tag is defined in the section element.
+            if not sec_title:
+                sec_id = sec.get("id", "")
+                if sec_id:
+                    sec_title = sec_id.replace("_", " ").title()
+                else:
+                    sec_title = "Section"
+
             sec_text = extract_node_text(sec)
             if sec_text:
                 sections.append({"section_title": sec_title, "content": sec_text})
@@ -211,13 +238,22 @@ def parse_dita_topic(file_path: Path, exclude_rules: list[tuple[str, str]], taxo
 
 
 def process_all_topics(dry_run: bool = False):
+    verify_environment_paths()
+
     exclude_rules = load_ditaval_rules(DITAVAL_PATH)
-    taxonomy_map = parse_taxonomy_hierarchy(TAXONOMY_PATH)
+    taxonomy_map = parse_taxonomy_hierarchy(TAXONOMY_XML_PATH)
 
     print(f"Loaded {len(exclude_rules)} exclusion rules from DITAVAL.")
     print(f"Parsed {len(taxonomy_map)} dynamic taxonomy lineages from subjectScheme.\n")
 
-    for dita_file in CONTENT_DIR.rglob("*.dita"):
+    if not CONTENT_DIR.exists():
+        print(f"Error: Content directory '{CONTENT_DIR}' does not exist.")
+        return
+
+    dita_files = list(CONTENT_DIR.rglob("*.dita"))
+    print(f"Found {len(dita_files)} DITA files to process.\n")
+
+    for dita_file in dita_files:
         data = parse_dita_topic(dita_file, exclude_rules, taxonomy_map)
 
         if dry_run:
@@ -238,6 +274,5 @@ def process_all_topics(dry_run: bool = False):
 
 
 if __name__ == "__main__":
-    # Set False to generate output files in data/dita-processed/
     DRY_RUN_MODE = False
     process_all_topics(dry_run=DRY_RUN_MODE)

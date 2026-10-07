@@ -4,7 +4,10 @@
   <title>Product A: Clinical Overview</title>
   <shortdesc>Product A is an innovative oncology drug designed to treat various types of cancer.</shortdesc>
   <conbody>
-    <p>Product A is an oral medication that targets specific molecular pathways in cancer cells, leading to their inhibition or elimination.</p>
+    <section id="product_description">
+      <title>Product Description</title>
+      <p>Product A is an oral medication that targets specific molecular pathways in cancer cells, leading to their inhibition or elimination.</p>
+    </section>
     <section id="mechanism_of_action">
       <title>Mechanism of Action</title>
       <p>Product A works by selectively inhibiting the activity of key oncogenic proteins, thereby reducing cancer cell proliferation and survival.</p>

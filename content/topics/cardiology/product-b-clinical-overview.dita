@@ -4,7 +4,10 @@
   <title>Product B: Clinical Overview</title>
   <shortdesc>Product B is a cutting-edge cardiology drug designed to treat various cardiovascular conditions.</shortdesc>
   <conbody>
-    <p>Product B is an injectable medication that targets specific molecular pathways in the cardiovascular system, leading to its modulation and regulation.</p>
+    <section id="product_description">
+      <title>Product Description</title>
+      <p>Product B is an injectable medication that targets specific molecular pathways in the cardiovascular system, leading to its modulation and regulation.</p>
+    </section>
     <section id="mechanism_of_action">
       <title>Mechanism of Action</title>
       <p>Product B works by selectively binding to specific receptors in the cardiovascular system, thereby:</p>
