@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PharmaRAGPromptTemplateSchema",
+  "description": "Schema enforcing validation and governance for pharma RAG prompt templates.",
+  "type": "object",
+  "required": [
+    "prompt_id",
+    "version",
+    "task_type",
+    "system_prompt_ref",
+    "model_config",
+    "variables",
+    "template",
+    "compliance_checks"
+  ],
+  "properties": {
+    "prompt_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "description": "Unique identifier for the prompt template."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semantic version string (e.g., '1.0.0')."
+    },
+    "task_type": {
+      "type": "string",
+      "enum": [
+        "clinical_overview",
+        "dosage_administration",
+        "safety_information",
+        "contraindications",
+        "precautions",
+        "adverse_reactions",
+        "fallback_unrelated"
+      ],
+      "description": "Content intent classification matching taxonomy or system fallback handling."
+    },
+    "system_prompt_ref": {
+      "type": "string",
+      "enum": [
+        "pharma_rag_default_v1",
+        "hcp_clinical_v1",
+        "pharma_fallback_v1"
+      ],
+      "description": "Reference key to an approved system prompt in system-prompts.json."
+    },
+    "model_config": {
+      "type": "object",
+      "required": ["model", "temperature"],
+      "properties": {
+        "model": {
+          "type": "string",
+          "default": "llama3"
+        },
+        "temperature": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "default": 0.0
+        },
+        "top_p": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "default": 0.9
+        }
+      }
+    },
+    "variables": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Required dynamic parameters for prompt template string formatting."
+    },
+    "template": {
+      "type": "string",
+      "description": "User message template string containing variable placeholders."
+    },
+    "compliance_checks": {
+      "type": "object",
+      "required": [
+        "strict_grounding_required",
+        "citation_required",
+        "prohibit_off_label"
+      ],
+      "properties": {
+        "strict_grounding_required": {
+          "type": "boolean",
+          "default": true
+        },
+        "citation_required": {
+          "type": "boolean",
+          "default": true
+        },
+        "prohibit_off_label": {
+          "type": "boolean",
+          "default": true
+        },
+        "target_audience": {
+          "type": "string",
+          "enum": ["hcp", "oncologist", "cardiologist", "internal_regulatory", "general"],
+          "default": "hcp"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,23 @@
+{
+  "prompt_id": "fallback_v1",
+  "version": "1.0.0",
+  "task_type": "fallback",
+  "system_prompt_ref": "pharma_fallback_v1",
+  "model_config": {
+    "model": "llama3",
+    "temperature": 0.0,
+    "top_p": 0.9
+  },
+  "variables": [
+    "product",
+    "target_audience",
+    "context_chunks"
+  ],
+  "template": "You are providing a fallback response.\nTarget Audience: {target_audience}\n\nTask:\nRespond to queries that fall outside the scope of approved pharmaceutical product documentation.\n\nInstructions:\n1. Politely decline off-topic requests.\n2. Do NOT answer general trivia, non-pharma queries, coding questions, or unapproved medical topics.\n3. Respond with: 'I can assist only with approved pharmaceutical technical documentation for {product}. I cannot assist with unrelated topics.'\n\nContext Chunks:\n{context_chunks}\n\nResponse:",
+  "compliance_checks": {
+    "strict_grounding_required": true,
+    "citation_required": false,
+    "prohibit_off_label": true,
+    "target_audience": "all_audiences"
+  }
+}
