@@ -202,7 +202,7 @@ def parse_dita_topic(file_path: Path, exclude_rules: list[tuple[str, str]], taxo
         # Pass exclude_sections=True to avoid creating a duplicate Overview & Context block
         direct_text = extract_node_text(body, exclude_sections=True)
         if direct_text:
-            sections.append({"section_id": "overview", "section_title": "Overview & Context", "section_intent": "overview", "content": direct_text})
+            sections.append({"section_id": "overview", "section_title": "Overview & Context", "content": direct_text})
 
         for sec in body.findall("section"):
             sec_title = sec.findtext("title")
@@ -226,7 +226,7 @@ def parse_dita_topic(file_path: Path, exclude_rules: list[tuple[str, str]], taxo
 
             sec_text = extract_node_text(sec)
             if sec_text:
-                sections.append({"section_id": sec_id, "section_title": sec_title, "section_intent": sec.get("intent", ""), "content": sec_text})
+                sections.append({"section_id": sec_id, "section_title": sec_title, "content": sec_text})
 
     return {
         "doc_id": file_path.stem,

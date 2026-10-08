@@ -118,7 +118,7 @@ class PharmaRAGPipeline:
         category: Optional[str] = None,
         target_audience: str = "HCP",
         intent: Optional[str] = None,
-        k: int = 8,
+        k: int = 5,
     ) -> Dict[str, Any]:
         print(f"[Query] User Question: '{query_text}'")
         
@@ -220,16 +220,9 @@ class PharmaRAGPipeline:
 if __name__ == "__main__":
     pipeline = PharmaRAGPipeline()
 
-    print("=" * 60)
-    print("RUNNING TEST QUERY 1: Dosage & Administration")
-    print("=" * 60)
-    res1 = pipeline.query("What is the dosage administration step for Product B?")
-    print("\n[RESPONSE 1]:\n")
-    print(res1["response"])
-
     print("\n" + "=" * 60)
-    print("RUNNING TEST QUERY 2: Serious Adverse Reactions")
+    print("RUNNING TEST QUERY 1: Product Overview for Product A")
     print("=" * 60)
-    res2 = pipeline.query("What serious adverse reactions are associated with Product B?")
-    print("\n[RESPONSE 2]:\n")
-    print(res2["response"])
+    res3 = pipeline.query("What's the clinical overview for Product A?")
+    print("\n[RESPONSE 1]:\n")
+    print(res3["response"])
