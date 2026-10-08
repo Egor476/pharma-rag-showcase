@@ -4,11 +4,15 @@
   "shortdesc": "Product B is a cutting-edge cardiology drug designed to treat various cardiovascular conditions.",
   "sections": [
     {
+      "section_id": "product_description",
       "section_title": "Product Description",
+      "section_intent": "",
       "content": "Product B is an injectable medication that targets specific molecular pathways in the cardiovascular system, leading to its modulation and regulation."
     },
     {
+      "section_id": "mechanism_of_action",
       "section_title": "Mechanism of Action",
+      "section_intent": "",
       "content": "Product B works by selectively binding to specific receptors in the cardiovascular system, thereby:\n- Reducing inflammation.\n- Improving vasodilation.\n- Potentiating the effects of natural vasodilators."
     }
   ],

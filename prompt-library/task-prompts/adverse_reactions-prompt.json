@@ -1,6 +1,6 @@
 {
   "prompt_id": "adverse_reactions_v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "task_type": "adverse_reactions",
   "system_prompt_ref": "hcp_clinical_v1",
   "model_config": {
@@ -13,7 +13,7 @@
     "target_audience",
     "context_chunks"
   ],
-  "template": "You are analyzing clinical safety, adverse event, and tolerability data for {product}.\nTarget Audience: {target_audience}\n\nTask:\nExtract and summarize all reported adverse reactions and clinical risks for {product} using ONLY the provided DITA context chunks below.\n\nInstructions:\n1. Separate reactions into 'Common Adverse Reactions' (with percentages/incidence rates) and 'Serious / Grade 3–4 Adverse Reactions' (including critical clinical interventions or monitoring requirements).\n2. Retain exact numerical values, percentages, physiological thresholds (e.g., blood pressure, lab values), and severity classifications as presented in the source text without alteration or rounding.\n3. Include a source citation for every listed reaction using the format: [Doc: <title> | Section: <section_title>].\n\nContext Chunks:\n{context_chunks}\n\nSummary:",
+  "template": "Target Product: {product}\nTarget Audience: {target_audience}\nUser Query: {query}\n\nContext Chunks:\n{context_chunks}\n\nTask:\nAnswer the User Query using ONLY the provided DITA context chunks for {product}.\n\nInstructions:\n1. Match the exact section in the context chunks that corresponds to the User Query (e.g., if asked for serious adverse reactions, extract exclusively from sections titled 'Serious Adverse Reactions').\n2. Extract all clinical findings, percentages, and guidelines listed under that specific section.\n3. Do NOT reclassify common adverse reactions as serious, and do NOT include contraindications or precautions.\n4. Include a citation for each point using: [Doc: <title> | Section: <section_title>].\n5. End with: 'Would you like to review the Common Adverse Reactions for {product} as well?'\n\nAdverse Reactions Summary:",
   "compliance_checks": {
     "strict_grounding_required": true,
     "citation_required": true,

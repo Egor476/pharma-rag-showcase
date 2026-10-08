@@ -3,8 +3,8 @@ import json
 from pathlib import Path
 from dotenv import load_dotenv
 
-from langchain_community.embeddings import SentenceTransformerEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_chroma import Chroma
 from langchain_core.documents import Document
 
 load_dotenv()
@@ -47,6 +47,8 @@ def build_chunk_documents(json_data: dict) -> list[Document]:
             "title": title,
             "shortdesc": shortdesc,
             "section_title": section_title,
+            "section_id": section.get("section_id", ""),
+            "section_intent": section.get("section_intent", ""),
             "section_index": sec_idx,
             "source_file": metadata_base.get("source_file", ""),
             "category": metadata_base.get("category", ""),
@@ -107,8 +109,9 @@ def ingest_to_chroma():
     print(f"\nTotal section chunks prepared for embedding: {len(documents)}")
 
     # 2. Initialize Embeddings Engine
-    print(f"\nInitializing SentenceTransformerEmbeddings ({EMBEDDING_MODEL_NAME})...")
-    embedding_function = SentenceTransformerEmbeddings(model_name=EMBEDDING_MODEL_NAME)
+    print(f"\nInitializing HuggingFaceEmbeddings ({EMBEDDING_MODEL_NAME})...")
+    embedding_function = HuggingFaceEmbeddings (model_name=EMBEDDING_MODEL_NAME)
+
 
     # 3. Create or Reset Chroma Vector Store
     persist_path = Path(CHROMA_PERSIST_DIRECTORY)
@@ -117,6 +120,18 @@ def ingest_to_chroma():
     print(f"Persisting to ChromaDB directory: {persist_path}")
     print(f"Collection Name: '{CHROMA_COLLECTION_NAME}'\n")
 
+    # Clear old collection to purge duplicate accumulation
+    try:
+        existing_store = Chroma(
+            collection_name=CHROMA_COLLECTION_NAME,
+            embedding_function=embedding_function,
+            persist_directory=str(persist_path),
+        )
+        existing_store.delete_collection()
+        print("[Ingestion] Cleared existing collection to remove stale duplicate vectors.")
+    except Exception as e:
+        print(f"[Ingestion] Initializing fresh collection ({e}).")
+
     vectorstore = Chroma.from_documents(
         documents=documents,
         embedding=embedding_function,
@@ -124,7 +139,6 @@ def ingest_to_chroma():
         persist_directory=str(persist_path),
     )
 
-    vectorstore.persist()
     print("✓ Vector database successfully created and persisted.")
 
     # 4. Smoke Test Query & Metadata Validation

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="product_b_contraindications_precautions" audience="hcp cardiologist" product="product_b" otherprops="safety_information">
+<reference id="product_b_safety_information" audience="hcp cardiologist" product="product_b" otherprops="safety_information">
   <title>Product B: Contraindications and Precautions</title>
   <shortdesc>Information on safety, contraindications, and precautions for Product B.</shortdesc>
   <refbody>

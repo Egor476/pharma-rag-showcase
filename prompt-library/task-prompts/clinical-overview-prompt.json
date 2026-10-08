@@ -13,7 +13,7 @@
     "target_audience",
     "context_chunks"
   ],
-  "template": "You are providing a clinical overview of {product}.\nTarget Audience: {target_audience}\n\nTask:\nExtract and summarize the key features, benefits, and clinical information for {product} using ONLY the provided DITA context chunks below.\n\nInstructions:\n1. Focus on the product's mechanism of action, efficacy, and safety profile.\n2. Retain exact numerical values, percentages, and physiological thresholds as presented in the source text without alteration or rounding.\n3. Include a source citation for every listed piece of information using the format: [Doc: <title> | Section: <section_title>].\n\nContext Chunks:\n{context_chunks}\n\nSummary:",
+  "template": "Target Product: {product}\nTarget Audience: {target_audience}\nUser Query: {query}\n\nContext Chunks:\n{context_chunks}\n\nTask:\nExtract and summarize the key features, benefits, and clinical information for {product} using ONLY the provided DITA context chunks below.\n\nInstructions:\n1. Focus on the product's mechanism of action, efficacy, and safety profile.\n2. Retain exact numerical values, percentages, and physiological thresholds as presented in the source text without alteration or rounding.\n3. Append citation [Doc: <title> | Section: <section_title>] to each category summary.\n\nSummary:",
   "compliance_checks": {
     "strict_grounding_required": true,
     "citation_required": true,

@@ -4,11 +4,15 @@
   "shortdesc": "Product A is an innovative oncology drug designed to treat various types of cancer.",
   "sections": [
     {
+      "section_id": "product_description",
       "section_title": "Product Description",
+      "section_intent": "",
       "content": "Product A is an oral medication that targets specific molecular pathways in cancer cells, leading to their inhibition or elimination."
     },
     {
+      "section_id": "mechanism_of_action",
       "section_title": "Mechanism of Action",
+      "section_intent": "",
       "content": "Product A works by selectively inhibiting the activity of key oncogenic proteins, thereby reducing cancer cell proliferation and survival.\nThe drug's mechanism of action is characterized by its ability to:\n- Inhibit the activity of oncogenic kinases.\n- Induce apoptosis in cancer cells.\n- Impede angiogenesis, thereby reducing blood supply to tumors."
     }
   ],
