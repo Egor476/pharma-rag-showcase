@@ -1,0 +1,101 @@
+{
+  "test_dataset_metadata": {
+    "version": "1.0.0",
+    "domain": "Pharmaceutical Structured Content (DITA)",
+    "description": "Evaluation dataset for measuring retrieval precision, context recall, and response fidelity across pharma RAG tasks."
+  },
+  "test_cases": [
+    {
+      "id": "TC-CARD-001",
+      "query": "What are the common adverse reactions reported for Product B?",
+      "intent": "adverse_reactions",
+      "product": "Product B",
+      "category": "cardiology",
+      "target_audience": "HCP",
+      "expected_sources": [
+        "product-b-adverse-reactions.dita"
+      ],
+      "expected_section": "Common Adverse Reactions",
+      "ground_truth_context": [
+        "The following adverse reactions occurred in ≥ 5% of patients during clinical evaluation of Product B: Hypotension (Systolic BP < 90 mmHg) | 18% | Mild to Moderate, Bradycardia (< 50 bpm) | 12% | Moderate, Headache | 9% | Mild, Dizziness / Lightheadedness | 7% | Mild"
+      ],
+      "ground_truth_answer": "Common adverse reactions occurring in ≥ 5% of patients for Product B include Hypotension (18%, mild to moderate), Bradycardia (12%, moderate), Headache (9%, mild), and Dizziness/Lightheadedness (7%, mild)."
+    },
+    {
+      "id": "TC-CARD-002",
+      "query": "What is the recommended dosing schedule and administration procedure for Product B?",
+      "intent": "dosage_administration",
+      "product": "Product B",
+      "category": "cardiology",
+      "target_audience": "HCP",
+      "expected_sources": [
+        "product-b-dosage.dita"
+      ],
+      "expected_section": "Overview & Context",
+      "ground_truth_context": [
+        "Step 1: Calculate the total dose of Product B based on the patient's weight (2 mg/kg). Step 2: Flush IV line with 0.9% sodium chloride injection before administration. Step 3: Administer Product B at a dose of 2 mg/kg IV over 10 minutes. Step 4: Flush IV line with 0.9% sodium chloride injection after administration."
+      ],
+      "ground_truth_answer": "Product B is administered at a dose of 2 mg/kg IV over 10 minutes. The IV line must be flushed with 0.9% sodium chloride injection both before and after administration."
+    },
+    {
+      "id": "TC-CARD-003",
+      "query": "Under what clinical conditions is Product B contraindicated?",
+      "intent": "safety_information",
+      "product": "Product B",
+      "category": "cardiology",
+      "target_audience": "HCP",
+      "expected_sources": [
+        "product-b-safety-information.dita"
+      ],
+      "expected_section": "Contraindications",
+      "ground_truth_context": [
+        "Product B is contraindicated in patients with: Known severe hypersensitivity to Product B or any of its excipients, severe cardiogenic shock or uncompensated heart failure requiring inotropic support, and second-degree or third-degree atrioventricular (AV) block in the absence of a functioning pacemaker."
+      ],
+      "ground_truth_answer": "Product B is contraindicated in patients with severe hypersensitivity to Product B or its excipients, severe cardiogenic shock or uncompensated heart failure requiring inotropes, and second- or third-degree AV block without a functioning pacemaker."
+    },
+    {
+      "id": "TC-CARD-004",
+      "query": "How does Product B work in the cardiovascular system?",
+      "intent": "clinical_overview",
+      "product": "Product B",
+      "category": "cardiology",
+      "target_audience": "HCP",
+      "expected_sources": [
+        "product-b-clinical-overview.dita"
+      ],
+      "expected_section": "Mechanism of Action",
+      "ground_truth_context": [
+        "Product B works by selectively binding to specific receptors in the cardiovascular system, thereby: Reducing inflammation, Improving vasodilation, Potentiating the effects of natural vasodilators."
+      ],
+      "ground_truth_answer": "Product B selectively binds to cardiovascular receptors to reduce inflammation, improve vasodilation, and potentiate natural vasodilators."
+    },
+    {
+      "id": "TC-ONCO-001",
+      "query": "What is the clinical overview and mechanism for Product A?",
+      "intent": "clinical_overview",
+      "product": "Product A",
+      "category": "oncology",
+      "target_audience": "Oncologist",
+      "expected_sources": [
+        "product-a-clinical-overview.dita"
+      ],
+      "expected_section": "Clinical Overview",
+      "ground_truth_context": [
+        "Product A is an oncology therapeutic targeting targeted pathways in oncology settings."
+      ],
+      "ground_truth_answer": "Product A is an oncology drug designed to target specific pathways in oncology conditions."
+    },
+    {
+      "id": "TC-FALL-001",
+      "query": "What are the recommended storing and shipping instructions for temperature control?",
+      "intent": "fallback_unrelated",
+      "product": null,
+      "category": null,
+      "target_audience": "HCP",
+      "expected_sources": [],
+      "expected_section": null,
+      "ground_truth_context": [],
+      "ground_truth_answer": "I do not have access to clinical or logistics information regarding storage or shipping guidelines in the current DITA library."
+    }
+  ]
+}
