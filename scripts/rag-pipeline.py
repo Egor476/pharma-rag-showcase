@@ -118,7 +118,7 @@ class PharmaRAGPipeline:
         category: Optional[str] = None,
         target_audience: str = "HCP",
         intent: Optional[str] = None,
-        k: int = 5,
+        k: int = 6,
     ) -> Dict[str, Any]:
         print(f"[Query] User Question: '{query_text}'")
         
@@ -156,11 +156,15 @@ class PharmaRAGPipeline:
             metadata_filter = None
 
         # 4. Vector Retrieval
-        retriever_args: Dict[str, Any] = {"k": k}
-        if metadata_filter:
-            retriever_args["filter"] = metadata_filter
+        if task_type == "fallback_unrelated":
+            print("[Query] Fallback intent detected. Skipping vector search.")
+            retrieved_docs = []
+        else:
+            retriever_args: Dict[str, Any] = {"k": k}
+            if metadata_filter:
+                retriever_args["filter"] = metadata_filter
 
-        retrieved_docs = self.vectorstore.similarity_search(query_text, **retriever_args)
+            retrieved_docs = self.vectorstore.similarity_search(query_text, **retriever_args)
 
         seen_contents = set()
         unique_docs = []

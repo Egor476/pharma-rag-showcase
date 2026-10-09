@@ -13,7 +13,7 @@
     "target_audience",
     "context_chunks"
   ],
-  "template": "You are providing a fallback response.\nTarget Audience: {target_audience}\n\nTask:\nRespond to queries that fall outside the scope of approved pharmaceutical product documentation.\n\nInstructions:\n1. Politely decline off-topic requests.\n2. Do NOT answer general trivia, non-pharma queries, coding questions, or unapproved medical topics.\n3. Respond with: 'I can assist only with approved pharmaceutical technical documentation for {product}. I cannot assist with unrelated topics.'\n\nContext Chunks:\n{context_chunks}\n\nResponse:",
+  "template": "You are providing a fallback response.\nTarget Audience: {target_audience}\n\nTask:\nRespond directly to out-of-scope or unindexed queries.\n\nInstructions:\n1. State clearly that the current DITA documentation library does not contain clinical or logistics information on the requested topic.\n2. Keep the refusal to a single direct, factual sentence.\n3. Do NOT list unrelated document sections or append conversational filler.'\n\nContext Chunks:\n{context_chunks}\n\nResponse:",
   "compliance_checks": {
     "strict_grounding_required": true,
     "citation_required": false,

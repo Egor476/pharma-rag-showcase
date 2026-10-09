@@ -4,10 +4,19 @@ import re
 from pathlib import Path
 from typing import Dict, Any, List
 from dotenv import load_dotenv
+from sentence_transformers import SentenceTransformer, util
 
 # Import RAG pipeline from local script
 import importlib.util
 from pathlib import Path
+
+load_dotenv()
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent
+
+TEST_DATASET_PATH = PROJECT_ROOT / "data" / "test-dataset.json"
+EVAL_RESULTS_PATH = PROJECT_ROOT / "data" / "evaluation-results.json"
 
 # Locate rag-pipeline.py in the same scripts/ directory
 _pipeline_path = Path(__file__).resolve().parent / "rag-pipeline.py"
@@ -22,14 +31,20 @@ _spec.loader.exec_module(_module)
 # Extract class
 PharmaRAGPipeline = _module.PharmaRAGPipeline
 
-load_dotenv()
+print("[Eval Init] Loading SentenceTransformer for semantic evaluation...")
+eval_embedder = SentenceTransformer("all-MiniLM-L6-v2")
 
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent
 
-TEST_DATASET_PATH = PROJECT_ROOT / "data" / "test-dataset.json"
-EVAL_RESULTS_PATH = PROJECT_ROOT / "data" / "evaluation-results.json"
-
+def compute_semantic_similarity(generated_text: str, ground_truth_text: str) -> float:
+    """Computes semantic similarity score using sentence embeddings."""
+    if not generated_text or not ground_truth_text:
+        return 0.0
+    
+    emb_gen = eval_embedder.encode(generated_text, convert_to_tensor=True)
+    emb_gt = eval_embedder.encode(ground_truth_text, convert_to_tensor=True)
+    
+    similarity = util.cos_sim(emb_gen, emb_gt).item()
+    return round(float(similarity), 4)
 
 def compute_token_overlap_metrics(generated_text: str, ground_truth_text: str) -> Dict[str, float]:
     """
@@ -80,6 +95,7 @@ def run_evaluation():
     intent_matches = 0
     source_hits = 0
     total_f1 = 0.0
+    total_semantic_sim = 0.0
 
     for idx, tc in enumerate(test_cases, 1):
         tc_id = tc.get("id")
@@ -121,7 +137,10 @@ def run_evaluation():
 
         # Metric 3: Response Lexical Similarity & Fidelity
         lexical_metrics = compute_token_overlap_metrics(generated_response, ground_truth_ans)
+        semantic_sim = compute_semantic_similarity(generated_response, ground_truth_ans)
+
         total_f1 += lexical_metrics["lexical_f1"]
+        total_semantic_sim += semantic_sim
 
         case_result = {
             "test_id": tc_id,
@@ -134,16 +153,17 @@ def run_evaluation():
             "hit_at_k": hit_at_k,
             "ground_truth_answer": ground_truth_ans,
             "generated_response": generated_response,
-            "metrics": lexical_metrics,
+            "metrics": {**lexical_metrics, "semantic_similarity": semantic_sim},
         }
         results_summary.append(case_result)
 
-        print(f"  -> Intent Correct: {intent_correct} | Hit@K: {hit_at_k} | Lexical F1: {lexical_metrics['lexical_f1']}\n")
+        print(f"  -> Intent Correct: {intent_correct} | Hit@K: {hit_at_k} | Lexical F1: {lexical_metrics['lexical_f1']}| Semantic Sim: {semantic_sim}\n")
 
     # Aggregate Benchmark Metrics
     overall_intent_accuracy = round(intent_matches / total_cases, 4)
     overall_hit_rate = round(source_hits / total_cases, 4)
     overall_mean_f1 = round(total_f1 / total_cases, 4)
+    overall_mean_semantic = round(total_semantic_sim / total_cases, 4)
 
     benchmark_report = {
         "summary": {
@@ -151,6 +171,7 @@ def run_evaluation():
             "intent_routing_accuracy": overall_intent_accuracy,
             "retrieval_hit_rate_at_k": overall_hit_rate,
             "mean_lexical_f1_score": overall_mean_f1,
+            "mean_semantic_similarity": overall_mean_semantic
         },
         "detailed_results": results_summary,
     }
@@ -166,6 +187,7 @@ def run_evaluation():
     print(f" Intent Routing Accuracy    : {overall_intent_accuracy * 100:.1f}%")
     print(f" Retrieval Hit Rate (Hit@K) : {overall_hit_rate * 100:.1f}%")
     print(f" Mean Generation F1 Score   : {overall_mean_f1:.4f}")
+    print(f" Mean Semantic Similarity   : {overall_mean_semantic:.4f}")
     print(f"\nFull benchmark report exported to: {EVAL_RESULTS_PATH}")
 
 
