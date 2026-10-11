@@ -1,7 +1,6 @@
 {
   "xml.catalogs": [
-    "C:\\Program Files\\dita-ot-4.4.1\\catalog-dita.xml",
-    "${workspaceFolder}/schemas/dita-pharma-catalog.xml"
+    "C:/Program Files/dita-ot-4.4.1/catalog-dita.xml"
   ],
   "xml.validation.enabled": true,
   "xml.fileAssociations": [
@@ -18,6 +17,7 @@
       "pattern": "**/*.dita"
     }
   ],
-  "ditacraft.ditaOtPath": "C:\\Program Files\\dita-ot-4.4.1",
+  "ditacraft.ditaOtPath": "C:/Program Files/dita-ot-4.4.1",
   "ditacraft.defaultTranstype": "html5",
+  "xml.downloadExternalResources.enabled": true
   }
