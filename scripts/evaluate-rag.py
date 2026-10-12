@@ -186,8 +186,8 @@ def run_evaluation():
     print(f" Total Test Cases Evaluated : {total_cases}")
     print(f" Intent Routing Accuracy    : {overall_intent_accuracy * 100:.1f}%")
     print(f" Retrieval Hit Rate (Hit@K) : {overall_hit_rate * 100:.1f}%")
-    print(f" Mean Generation F1 Score   : {overall_mean_f1:.4f}")
-    print(f" Mean Semantic Similarity   : {overall_mean_semantic:.4f}")
+    print(f" Lexical F1 Score   : {overall_mean_f1:.4f}")
+    print(f" Semantic Similarity   : {overall_mean_semantic:.4f}")
     print(f"\nFull benchmark report exported to: {EVAL_RESULTS_PATH}")
 
 
