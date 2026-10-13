@@ -1,8 +1,8 @@
-import os
 import json
 from pathlib import Path
-import lxml.etree as etree  # type: ignore
+
 from dotenv import load_dotenv
+from lxml import etree  # type: ignore
 
 load_dotenv()
 
@@ -87,7 +87,7 @@ def expand_taxonomy_lineage(raw_attr_value: str, taxonomy_map: dict[str, list[st
         parents = taxonomy_map.get(token, [])
         expanded.update(parents)
 
-    return sorted(list(expanded))
+    return sorted(expanded)
 
 
 def should_exclude(element, exclude_rules: list[tuple[str, str]]) -> bool:
@@ -218,7 +218,6 @@ def parse_dita_topic(file_path: Path, exclude_rules: list[tuple[str, str]], taxo
             # Fallback to formatting section ID (e.g. 'product_description' -> 'Product Description')
             # if no explicit <title> tag is defined in the section element.
             if not sec_title:
-                sec_id = sec.get("id", "")
                 if sec_id:
                     sec_title = sec_id.replace("_", " ").title()
                 else:
@@ -226,7 +225,7 @@ def parse_dita_topic(file_path: Path, exclude_rules: list[tuple[str, str]], taxo
 
             sec_text = extract_node_text(sec)
             if sec_text:
-                sections.append({"section_id": sec_id, "section_title": sec_title, "content": sec_text})
+                sections.append({"section_id": sec_intent, "section_title": sec_title, "content": sec_text})
 
     return {
         "doc_id": file_path.stem,

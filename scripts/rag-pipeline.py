@@ -1,15 +1,15 @@
-import os
 import json
+import os
 import re
 from pathlib import Path
-from typing import Dict, Any, List, Optional
-from dotenv import load_dotenv
+from typing import Any
 
-from langchain_huggingface import HuggingFaceEmbeddings
+from dotenv import load_dotenv
 from langchain_chroma import Chroma
-from langchain_ollama import ChatOllama
-from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_ollama import ChatOllama
 
 load_dotenv()
 
@@ -23,7 +23,7 @@ PROMPT_LIBRARY_DIR = PROJECT_ROOT / os.getenv("PROMPT_LIBRARY_DIR", "prompt-libr
 OLLAMA_MODEL_NAME = os.getenv("OLLAMA_MODEL_NAME", "llama3")
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 
-TASK_PROMPT_MAP: Dict[str, str] = {
+TASK_PROMPT_MAP: dict[str, str] = {
     "adverse_reactions": "task-prompts/adverse_reactions-prompt.json",
     "dosage_administration": "task-prompts/dosage-prompt.json",
     "safety_information": "task-prompts/safety-information-prompt.json",
@@ -46,24 +46,24 @@ class PharmaRAGPipeline:
         
         system_prompts_file = PROMPT_LIBRARY_DIR / "system-prompts.json"
         print(f"[Pipeline Init] Loading system prompts from: {system_prompts_file}")
-        self.system_prompts: Dict[str, Any] = self._load_json(system_prompts_file).get("system_prompts", {})
+        self.system_prompts: dict[str, Any] = self._load_json(system_prompts_file).get("system_prompts", {})
         print("[Pipeline Init] Initialization complete.\n")
 
     @staticmethod
-    def _load_json(file_path: Path) -> Dict[str, Any]:
+    def _load_json(file_path: Path) -> dict[str, Any]:
         if not file_path.exists():
             raise FileNotFoundError(f"Configuration file not found at: {file_path}")
         with open(file_path, "r", encoding="utf-8") as f:
             return json.load(f)
 
-    def _extract_product_from_query(self, query: str) -> Optional[str]:
+    def _extract_product_from_query(self, query: str) -> str | None:
         """Dynamically detects product references in user text (e.g., 'Product A', 'Product B')."""
         match = re.search(r"product\s+([a-z0-9_]+)", query, re.IGNORECASE)
         if match:
             return f"product_{match.group(1).lower()}"
         return None
 
-    def _resolve_task_type(self, query: str, explicit_intent: Optional[str] = None) -> str:
+    def _resolve_task_type(self, query: str, explicit_intent: str | None = None) -> str:
         if explicit_intent and explicit_intent in TASK_PROMPT_MAP:
             return explicit_intent
 
@@ -79,7 +79,7 @@ class PharmaRAGPipeline:
         else:
             return "fallback_unrelated"
 
-    def _get_prompt_config(self, task_type: str) -> Dict[str, Any]:
+    def _get_prompt_config(self, task_type: str) -> dict[str, Any]:
         rel_path = TASK_PROMPT_MAP.get(task_type, TASK_PROMPT_MAP["fallback_unrelated"])
         task_prompt_path = PROMPT_LIBRARY_DIR / rel_path
         task_prompt_data = self._load_json(task_prompt_path)
@@ -100,7 +100,7 @@ class PharmaRAGPipeline:
             "variables": task_prompt_data.get("variables", ["query", "product", "target_audience", "context_chunks"]),
         }
 
-    def _format_docs(self, docs: List[Any]) -> str:
+    def _format_docs(self, docs: list[Any]) -> str:
         if not docs:
             return "No relevant DITA context retrieved."
 
@@ -114,12 +114,12 @@ class PharmaRAGPipeline:
     def query(
         self,
         query_text: str,
-        product: Optional[str] = None,
-        category: Optional[str] = None,
+        product: str | None = None,
+        category: str | None = None,
         target_audience: str = "HCP",
-        intent: Optional[str] = None,
+        intent: str | None = None,
         k: int = 6,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         print(f"[Query] User Question: '{query_text}'")
         
         # 1. Resolve Intent & Prompt Config
@@ -142,14 +142,14 @@ class PharmaRAGPipeline:
         print(f"[Query] Target Product Identified: {product_display} (Filter key: {prod_key})")
 
         # 3. Build Metadata Filter
-        filter_conditions: List[Dict[str, Any]] = []
+        filter_conditions: list[dict[str, Any]] = []
         if category:
             filter_conditions.append({"category": {"$eq": category.lower()}})
         if prod_key:
             filter_conditions.append({"product": {"$eq": prod_key}})
 
         if len(filter_conditions) == 1:
-            metadata_filter: Optional[Dict[str, Any]] = filter_conditions[0]
+            metadata_filter: dict[str, Any] | None = filter_conditions[0]
         elif len(filter_conditions) > 1:
             metadata_filter = {"$and": filter_conditions}
         else:
@@ -160,7 +160,7 @@ class PharmaRAGPipeline:
             print("[Query] Fallback intent detected. Skipping vector search.")
             retrieved_docs = []
         else:
-            retriever_args: Dict[str, Any] = {"k": k}
+            retriever_args: dict[str, Any] = {"k": k}
             if metadata_filter:
                 retriever_args["filter"] = metadata_filter
 

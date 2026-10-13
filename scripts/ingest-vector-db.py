@@ -1,11 +1,11 @@
-import os
 import json
+import os
 from pathlib import Path
-from dotenv import load_dotenv
 
-from langchain_huggingface import HuggingFaceEmbeddings
+from dotenv import load_dotenv
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
+from langchain_huggingface import HuggingFaceEmbeddings
 
 load_dotenv()
 
@@ -86,7 +86,7 @@ def load_all_processed_topics(processed_dir: Path) -> list[Document]:
                 docs = build_chunk_documents(data)
                 all_docs.extend(docs)
                 print(f"  [+] Loaded {len(docs)} section chunk(s) from {json_file.name}")
-        except Exception as e:
+        except (OSError, json.JSONDecodeError) as e:
             print(f"  [!] Error processing {json_file.name}: {e}")
 
     return all_docs
@@ -129,7 +129,7 @@ def ingest_to_chroma():
         )
         existing_store.delete_collection()
         print("[Ingestion] Cleared existing collection to remove stale duplicate vectors.")
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         print(f"[Ingestion] Initializing fresh collection ({e}).")
 
     vectorstore = Chroma.from_documents(

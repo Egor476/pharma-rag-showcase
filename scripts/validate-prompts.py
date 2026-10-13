@@ -1,6 +1,9 @@
 import json
-from jsonschema import validate
 from pathlib import Path
+
+from jsonschema import validate
+from jsonschema.exceptions import ValidationError
+
 
 def validate_task_prompts():
     base_dir = Path(__file__).resolve().parent.parent
@@ -23,7 +26,7 @@ def validate_task_prompts():
                 instance = json.load(f)
             validate(instance=instance, schema=schema)
             print(f"  [PASS] {json_file.name}")
-        except Exception as e:
+        except (OSError, json.JSONDecodeError, ValidationError) as e:
             print(f"  [FAIL] {json_file.name} failed validation: {e}")
             success = False
             

@@ -1,7 +1,8 @@
-import os
 from pathlib import Path
+
 import yaml
-import lxml.etree as etree
+from lxml import etree  # type: ignore
+
 
 def parse_subject(element):
     """Recursively parse subjectdef elements into a dictionary structure."""

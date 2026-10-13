@@ -1,14 +1,11 @@
-import os
+# Import RAG pipeline from local script
+import importlib.util
 import json
 import re
 from pathlib import Path
-from typing import Dict, Any, List
+
 from dotenv import load_dotenv
 from sentence_transformers import SentenceTransformer, util
-
-# Import RAG pipeline from local script
-import importlib.util
-from pathlib import Path
 
 load_dotenv()
 
@@ -46,12 +43,12 @@ def compute_semantic_similarity(generated_text: str, ground_truth_text: str) -> 
     similarity = util.cos_sim(emb_gen, emb_gt).item()
     return round(float(similarity), 4)
 
-def compute_token_overlap_metrics(generated_text: str, ground_truth_text: str) -> Dict[str, float]:
+def compute_token_overlap_metrics(generated_text: str, ground_truth_text: str) -> dict[str, float]:
     """
     Computes exact keyword overlap and Token-level Precision/Recall/F1 
     between generated answer and ground truth text (Lexical Similarity Benchmark).
     """
-    def tokenize(text: str) -> List[str]:
+    def tokenize(text: str) -> list[str]:
         return re.findall(r"\b\w+\b", text.lower())
 
     gen_tokens = tokenize(generated_text)

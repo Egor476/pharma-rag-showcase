@@ -1,6 +1,8 @@
 import sys
 from pathlib import Path
-import lxml.etree as etree
+
+from lxml import etree  # type: ignore
+
 
 def validate_xml_files():
     base_dir = Path(__file__).resolve().parent.parent
@@ -20,7 +22,7 @@ def validate_xml_files():
         try:
             etree.parse(str(xml_file))
             print(f"  [PASS] {xml_file.relative_to(base_dir)}")
-        except Exception as e:
+        except (OSError, etree.XMLSyntaxError) as e:
             print(f"  [FAIL] {xml_file.relative_to(base_dir)} parsing failed: {e}")
             success = False
             
