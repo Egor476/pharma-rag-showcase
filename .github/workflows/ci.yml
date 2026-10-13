@@ -70,9 +70,6 @@ jobs:
           file_pattern: "data/dita-processed/ data/chroma-db/"
           add_options: "-f"
 
-      - name: Set up Ollama
-        uses: ollama/setup-ollama@v3
-
       - name: Set up and Run Ollama
         uses: pydantic/ollama-action@v3
         with:
