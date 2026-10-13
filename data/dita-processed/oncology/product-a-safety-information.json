@@ -1,0 +1,33 @@
+{
+  "doc_id": "product-a-safety-information",
+  "title": "Product A: Contraindications and Precautions",
+  "shortdesc": "Information on safety and contraindications for Product A.",
+  "sections": [
+    {
+      "section_id": "contraindications",
+      "section_title": "Contraindications",
+      "content": "Product A is contraindicated in patients with the following conditions:\n- Known severe hypersensitivity to Product A or any of its excipients.\n- Severe baseline myelosuppression (absolute neutrophil count < 500/mm\u00b3 or platelet count < 50,000/mm\u00b3).\n- Severe hepatic impairment (total bilirubin > 3x upper limit of normal)."
+    },
+    {
+      "section_id": "precautions",
+      "section_title": "Precautions",
+      "content": "Before administering Product A, consider the following safety precautions:\n- Monitor complete blood counts (CBC) prior to initiating each cycle and routinely during treatment.\n- Assess for signs of febrile neutropenia or active systemic infection before each dose.\n- Monitor hepatic function tests and serum electrolyte levels during administration to assess for potential tumor lysis syndrome (TLS)."
+    }
+  ],
+  "metadata": {
+    "source_file": "product-a-safety-information.dita",
+    "category": "oncology",
+    "product": "product_a",
+    "audience": "hcp, oncologist, user_audience",
+    "otherprops": "content_intent, safety_information",
+    "audience_list": [
+      "hcp",
+      "oncologist",
+      "user_audience"
+    ],
+    "otherprops_list": [
+      "content_intent",
+      "safety_information"
+    ]
+  }
+}
