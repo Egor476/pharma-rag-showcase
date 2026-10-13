@@ -70,10 +70,12 @@ jobs:
           file_pattern: "data/dita-processed/ data/chroma-db/"
           add_options: "-f"
 
-      - name: Set up and Run Ollama
-        uses: pydantic/ollama-action@v3
-        with:
-          model: llama3
+      - name: Install and Start Ollama Locally
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama serve &
+          sleep 5
+          ollama pull llama3
       
       - name: Run RAG Evaluation
         run: |
