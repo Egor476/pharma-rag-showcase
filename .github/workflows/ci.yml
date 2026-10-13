@@ -72,7 +72,7 @@ jobs:
 
       - name: Run RAG Evaluation
         run: |
-          python scripts/rag-evaluation.py
+          python scripts/evaluate-rag.py
       
       - name: Upload Evaluation Reports
         uses: actions/upload-artifact@v4
