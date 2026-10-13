@@ -2,6 +2,7 @@
 import importlib.util
 import json
 import re
+import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -187,6 +188,25 @@ def run_evaluation():
     print(f" Semantic Similarity   : {overall_mean_semantic:.4f}")
     print(f"\nFull benchmark report exported to: {EVAL_RESULTS_PATH}")
 
+    # Threshold Validation & Failure Triggers
+    failures = []
+    if overall_intent_accuracy < 0.85:
+        failures.append(f"Intent Routing Accuracy ({overall_intent_accuracy}) is below 0.85")
+    if overall_hit_rate < 0.85:
+        failures.append(f"Retrieval Hit Rate ({overall_hit_rate}) is below 0.85")
+    if overall_mean_semantic < 0.7:
+        failures.append(f"Mean Semantic Similarity ({overall_mean_semantic}) is below 0.7")
+    if overall_mean_f1 < 0.3:
+        failures.append(f"Mean Lexical F1 Score ({overall_mean_f1}) is below 0.3")
+
+    if failures:
+        print("\n[EVALUATION FAILED] The following thresholds were not met:")
+        for failure in failures:
+            print(f" - {failure}")
+        sys.exit(1)
+    else:
+        print("\n[EVALUATION PASSED] All benchmark thresholds met successfully.")
+        sys.exit(0)
 
 if __name__ == "__main__":
     run_evaluation()
