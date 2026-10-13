@@ -36,13 +36,20 @@ The following table includes the benchmarks used to evaluate the RAG pipeline fo
 > [!NOTE]
 > Generative LLMs naturally paraphrase and structure clinical responses. Evaluating via semantic similarity provides an accurate measure of model fidelity, whereas Lexical F1 serves as a diagnostic indicator for verbatim term repetition.
 
-## Next Steps
+## CI/CD Pipeline and Automation
 
-The next steps will be establishing a unified CI/CD pipeline that will automate the following upon `git push`:
+This project includes an automated CI/CD pipeline built with GitHub Actions (`.github/workflows/ci.yml`) that does the following on every `git push` and pull request:
 
-* XML-to-YAML taxonomy conversion
-* XML-to-JSON topic conversion
-* ChromaDB vector embeddings
-* RAG evaluation
+* Executes Python linting, validates all XML/DITA maps and topics against structural rules, and verifies task prompt structures against `prompt-schema.json`.
+* Converts the XML-based DITA taxonomy into the YAML taxonomy.
+* Processes XML-based DITA topics into structured JSON files and updates the ChromaDB vector embeddings accordingly.
+* Evaluates the RAG pipeline to ensure benchmark performance standards are maintained before changes are merged.
 
-A quality gate will be implemented to prevent pushing changes that have led to lower benchmark results.
+### Recommended Branch Flow
+
+To contribute or make updates to this repository, follow this standard branch workflow:
+
+1. Create a Feature branch from `main` for any content updates or script modifications (e.g., `git checkout -b feature/update-dosage-content`).
+2. Push your changes to your remote branch. The automated GitHub Actions pipeline will run validations, conversions, and evaluations.
+3. Verify that all CI checks pass successfully (including XML validation and RAG evaluation metrics).
+4. Once checks pass, merge your changes into `main`. Auto-commit actions will synchronize the updated processed data and vector embeddings.

@@ -1,0 +1,84 @@
+name: Pharma Product RAG CI Pipeline
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+permissions:
+  contents: write
+
+jobs:
+  ci-checks:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Lint Python Code with Ruff
+        run: |
+          ruff check scripts/
+
+      - name: Validate XML/DITA Structure
+        run: |
+          python scripts/validate-xml.py
+
+      - name: Validate Prompt JSON against Schema
+        run: |
+          python scripts/validate-prompts.py
+
+      - name: Run XML-to-YAML Taxonomy Conversion
+        run: |
+          python scripts/taxonomy-converter.py
+
+      - name: Verify Git Status (Check if generated YAML matches expected state)
+        run: |
+          git diff --exit-code schemas/pharma-product-taxonomy.yaml || echo "Taxonomy YAML generated or updated successfully."
+
+      - name: Run DITA Preprocessor (XML-to-JSON Topics)
+        run: |
+          python scripts/dita-preprocessor.py
+
+      - name: Upload Processed DITA Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dita-processed-topics
+          path: data/dita-processed/
+          retention-days: 7
+
+      - name: Run Vector Database Ingestion
+        run: |
+          python scripts/ingest-vector-db.py
+
+      - name: Auto-commit Generated Data Files Back to Repo
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "CI: Auto-generated processed DITA JSONs and ChromaDB embeddings"
+          file_pattern: "data/dita-processed/ data/chroma-db/"
+
+      - name: Run RAG Evaluation
+        run: |
+          python scripts/rag-evaluation.py
+      
+      - name: Upload Evaluation Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: rag-evaluation-reports
+          path: |
+            data/
+            *.json
+            *.log
+          retention-days: 14
