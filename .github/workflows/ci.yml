@@ -68,6 +68,7 @@ jobs:
         with:
           commit_message: "CI: Auto-generated processed DITA JSONs and ChromaDB embeddings"
           file_pattern: "data/dita-processed/ data/chroma-db/"
+          add_options: "-f"
 
       - name: Run RAG Evaluation
         run: |
