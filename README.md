@@ -42,17 +42,16 @@ This project includes an automated CI/CD pipeline built with GitHub Actions (`.g
 
 * Executes Python linting, validates all XML/DITA maps and topics against structural rules, and verifies task prompt structures against `prompt-schema.json`.
 * Converts the XML-based DITA taxonomy into the YAML taxonomy.
-* Processes XML-based DITA topics into structured JSON files and updates the ChromaDB vector embeddings accordingly.
-* Evaluates the RAG pipeline to ensure benchmark performance standards are maintained before changes are merged.
+* Processes XML-based DITA topics into structured JSON files.
 
 > [!NOTE]
-> To maintain fast CI feedback loops during routine content and code updates, the live LLM evaluation step (`evaluate-rag.py` with Ollama) is commented out by default in `.github/workflows/ci.yml`. When making core prompt engineering or architectural changes, enable this step in CI to execute full model benchmarks, or run `python scripts/evaluate-rag.py` locally.
+> To keep the CI pipeline focused on code validation and prevent merge conflicts from generated files, the vector database ingestion and live LLM evaluation are performed locally. Run`python scripts/ingest-vector-db.py`and `python scripts/evaluate-rag.py` on your machine when updating content or benchmarking model performance.
 
 ### Recommended Branch Flow
 
 To contribute or make updates to this repository, follow this standard branch workflow:
 
 1. Create a Feature branch from `main` for any content updates or script modifications (e.g., `git checkout -b feature/update-dosage-content`).
-2. Push your changes to your remote branch. The automated GitHub Actions pipeline will run validations, conversions, and evaluations.
-3. Verify that all CI checks pass successfully (including XML validation and RAG evaluation metrics).
-4. Once checks pass, merge your changes into `main`. Auto-commit actions will synchronize the updated processed data and vector embeddings.
+2. Push your changes to your remote branch. The automated GitHub Actions pipeline will run validations and conversions.
+3. Verify that all CI checks pass successfully, including XML and DITA validation.
+4. Once checks pass, merge your changes into `main`. Run preprocessing and vector ingestion locally to update your local search index.
