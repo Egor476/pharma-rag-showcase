@@ -76,7 +76,7 @@ jobs:
         with:
           commit_message: "CI: Auto-generated processed DITA JSONs and ChromaDB embeddings"
           file_pattern: "data/dita-processed/ data/chroma-db/"
-          add_options: "-f"
+          skip_ci: true
     
     # =========================================================================
       # TEMPORARILY DISABLED: LLM Evaluation Quality Gate (~20+ min run time)
