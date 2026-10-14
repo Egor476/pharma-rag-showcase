@@ -2,7 +2,7 @@ name: Pharma Product RAG CI Pipeline
 
 on:
   push:
-    branches: [ "**" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main", "master" ]
 
@@ -66,39 +66,3 @@ jobs:
           name: dita-processed-topics
           path: data/dita-processed/
           retention-days: 7
-
-      - name: Run Vector Database Ingestion
-        run: |
-          python scripts/ingest-vector-db.py
-
-      - name: Auto-commit Generated Data Files Back to Repo
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "CI: Auto-generated processed DITA JSONs and ChromaDB embeddings"
-          file_pattern: "data/dita-processed/ data/chroma-db/"
-          add_options: "-f"
-    
-    # =========================================================================
-      # TEMPORARILY DISABLED: LLM Evaluation Quality Gate (~20+ min run time)
-      # Uncomment these steps when performing major prompt/RAG architectural changes.
-      # =========================================================================
-    #  - name: Install and Start Ollama Locally
-    #    run: |
-    #      curl -fsSL https://ollama.com/install.sh | sh
-    #      ollama serve &
-    #      sleep 5
-    #      ollama pull llama3
-    #  
-    #  - name: Run RAG Evaluation
-    #    run: |
-    #      python scripts/evaluate-rag.py
-    #  
-    #  - name: Upload Evaluation Reports
-    #    uses: actions/upload-artifact@v4
-    #    with:
-    #      name: rag-evaluation-reports
-    #      path: |
-    #        data/
-    #        *.json
-    #        *.log
-    #      retention-days: 14
