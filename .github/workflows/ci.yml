@@ -24,6 +24,8 @@ jobs:
       
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -71,12 +73,17 @@ jobs:
         run: |
           python scripts/ingest-vector-db.py
 
+      - name: Configure Git Author
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com>"
+
       - name: Auto-commit Generated Data Files Back to Repo
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "CI: Auto-generated processed DITA JSONs and ChromaDB embeddings"
           file_pattern: "data/dita-processed/ data/chroma-db/"
-          skip_ci: true
+          commit_options: "--no-verify"
     
     # =========================================================================
       # TEMPORARILY DISABLED: LLM Evaluation Quality Gate (~20+ min run time)
