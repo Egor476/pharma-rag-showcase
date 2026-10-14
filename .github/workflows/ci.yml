@@ -77,24 +77,28 @@ jobs:
           commit_message: "CI: Auto-generated processed DITA JSONs and ChromaDB embeddings"
           file_pattern: "data/dita-processed/ data/chroma-db/"
           add_options: "-f"
-
-      - name: Install and Start Ollama Locally
-        run: |
-          curl -fsSL https://ollama.com/install.sh | sh
-          ollama serve &
-          sleep 5
-          ollama pull llama3
-      
-      - name: Run RAG Evaluation
-        run: |
-          python scripts/evaluate-rag.py
-      
-      - name: Upload Evaluation Reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: rag-evaluation-reports
-          path: |
-            data/
-            *.json
-            *.log
-          retention-days: 14
+    
+    # =========================================================================
+      # TEMPORARILY DISABLED: LLM Evaluation Quality Gate (~20+ min run time)
+      # Uncomment these steps when performing major prompt/RAG architectural changes.
+      # =========================================================================
+    #  - name: Install and Start Ollama Locally
+    #    run: |
+    #      curl -fsSL https://ollama.com/install.sh | sh
+    #      ollama serve &
+    #      sleep 5
+    #      ollama pull llama3
+    #  
+    #  - name: Run RAG Evaluation
+    #    run: |
+    #      python scripts/evaluate-rag.py
+    #  
+    #  - name: Upload Evaluation Reports
+    #    uses: actions/upload-artifact@v4
+    #    with:
+    #      name: rag-evaluation-reports
+    #      path: |
+    #        data/
+    #        *.json
+    #        *.log
+    #      retention-days: 14

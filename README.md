@@ -45,6 +45,9 @@ This project includes an automated CI/CD pipeline built with GitHub Actions (`.g
 * Processes XML-based DITA topics into structured JSON files and updates the ChromaDB vector embeddings accordingly.
 * Evaluates the RAG pipeline to ensure benchmark performance standards are maintained before changes are merged.
 
+> [!NOTE]
+> To maintain fast CI feedback loops during routine content and code updates, the live LLM evaluation step (`evaluate-rag.py` with Ollama) is commented out by default in `.github/workflows/ci.yml`. When making core prompt engineering or architectural changes, enable this step in CI to execute full model benchmarks, or run `python scripts/evaluate-rag.py` locally.
+
 ### Recommended Branch Flow
 
 To contribute or make updates to this repository, follow this standard branch workflow:
