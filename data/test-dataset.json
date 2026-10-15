@@ -81,9 +81,10 @@
       ],
       "expected_section": "Clinical Overview",
       "ground_truth_context": [
-        "Product A is an oncology therapeutic targeting targeted pathways in oncology settings."
+        "Product A is an oral medication that targets specific molecular pathways in cancer cells, leading to their inhibition or elimination.",
+        "Product A works by selectively inhibiting the activity of key oncogenic proteins, thereby reducing cancer cell proliferation and survival.\nThe drug's mechanism of action is characterized by its ability to:\n- Inhibit the activity of oncogenic kinases.\n- Induce apoptosis in cancer cells.\n- Impede angiogenesis, thereby reducing blood supply to tumors."
       ],
-      "ground_truth_answer": "Product A is an oncology drug designed to target specific pathways in oncology conditions."
+      "ground_truth_answer": "Product A is an oral medication that targets specific molecular pathways to inhibit or eliminate cancer cells. Its mechanism of action involves selectively inhibiting key oncogenic kinases, inducing apoptosis, and impeding tumor angiogenesis to reduce cancer cell proliferation and survival."
     },
     {
       "id": "TC-FALL-001",
