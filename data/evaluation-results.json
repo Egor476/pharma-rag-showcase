@@ -3,8 +3,8 @@
     "total_test_cases": 6,
     "intent_routing_accuracy": 1.0,
     "retrieval_hit_rate_at_k": 1.0,
-    "mean_lexical_f1_score": 0.3453,
-    "mean_semantic_similarity": 0.7958
+    "mean_lexical_f1_score": 0.4224,
+    "mean_semantic_similarity": 0.8366
   },
   "detailed_results": [
     {
@@ -21,17 +21,16 @@
         "product-b-safety-information.dita",
         "product-b-safety-information.dita",
         "product-b-clinical-overview.dita",
-        "product-b-dosage.dita",
-        "product-b-adverse-reactions.dita"
+        "product-b-dosage.dita"
       ],
       "hit_at_k": 1.0,
       "ground_truth_answer": "Common adverse reactions occurring in \u2265 5% of patients for Product B include Hypotension (18%, mild to moderate), Bradycardia (12%, moderate), Headache (9%, mild), and Dizziness/Lightheadedness (7%, mild).",
-      "generated_response": "Based on the provided context chunks, the common adverse reactions reported for Product B are:\n\n* Hypotension (Systolic BP < 90 mmHg) | 18% | Mild to Moderate [Doc: Product B: Adverse Reactions | Section: Common Adverse Reactions]\n* Bradycardia (< 50 bpm) | 12% | Moderate [Doc: Product B: Adverse Reactions | Section: Common Adverse Reactions]\n* Headache | 9% | Mild [Doc: Product B: Adverse Reactions | Section: Common Adverse Reactions]\n* Dizziness / Lightheadedness | 7% | Mild [Doc: Product B: Adverse Reactions | Section: Common Adverse Reactions]\n\nWould you like to review the Common Adverse Reactions for Product B as well?",
+      "generated_response": "Common Adverse Reactions:\n\nThe following adverse reactions occurred in \u2265 5% of patients during clinical evaluation of Product B:\nHypotension (Systolic BP < 90 mmHg) | 18% | Mild to Moderate\nBradycardia (< 50 bpm) | 12% | Moderate\nHeadache | 9% | Mild\nDizziness / Lightheadedness | 7% | Mild\n\n[Doc: Product B: Adverse Reactions | Section: Common Adverse Reactions]",
       "metrics": {
-        "lexical_precision": 0.2442,
-        "lexical_recall": 0.75,
-        "lexical_f1": 0.3684,
-        "semantic_similarity": 0.7004
+        "lexical_precision": 0.5,
+        "lexical_recall": 0.8571,
+        "lexical_f1": 0.6316,
+        "semantic_similarity": 0.9069
       }
     },
     {
@@ -48,17 +47,16 @@
         "product-b-safety-information.dita",
         "product-b-clinical-overview.dita",
         "product-b-adverse-reactions.dita",
-        "product-b-safety-information.dita",
-        "product-b-clinical-overview.dita"
+        "product-b-safety-information.dita"
       ],
       "hit_at_k": 1.0,
       "ground_truth_answer": "Product B is administered at a dose of 2 mg/kg IV over 10 minutes. The IV line must be flushed with 0.9% sodium chloride injection both before and after administration.",
-      "generated_response": "Based on the provided context chunks for Product B, I will answer the User Query regarding the recommended dosing schedule and administration procedure for Product B.\n\n**Recommended Dosing Schedule and Administration Procedure:**\n\nTo confirm patient eligibility for Product B treatment, calculate the total dose of Product B based on the patient's weight (2 mg/kg). For example, a 70 kg patient requires a total dose of 140 mg (70 kg \u00d7 2 mg/kg).\n\nStep 1: Flush IV line with 0.9% sodium chloride injection before administration to ensure the IV line appears clear without cloudiness or precipitate.\n\nStep 2: Administer Product B at a dose of 2 mg/kg IV over 10 minutes, monitoring patient's vital signs and adjusting dosage as necessary.\n\nStep 3: Flush IV line with 0.9% sodium chloride injection after administration to ensure the IV line appears clear without cloudiness or precipitate.\n\n**[Doc: Product B: Dosage Administration | Section: Overview & Context]**\n\nPlease note that this dosing schedule and administration procedure are based on the provided context chunks for Product B, and any modifications or adjustments should be made in consultation with a healthcare professional.",
+      "generated_response": "The recommended dosing schedule and administration procedure for Product B are as follows:\n\nConfirm patient's eligibility for Product B treatment.\nStep 1: Calculate the total dose of Product B based on the patient's weight (2 mg/kg). (Example: For example, a 70 kg patient requires a total dose of 140 mg (70 kg \u00d7 2 mg/kg).)\nStep 2: Flush IV line with 0.9% sodium chloride injection before administration. Result: Make sure that the IV line appears clear without cloudiness or precipitate.\nStep 3: Administer Product B at a dose of 2 mg/kg IV over 10 minutes. Note: Monitor patient's vital signs and adjust dosage as necessary.\nStep 4: Flush IV line with 0.9% sodium chloride injection after administration. Result: Make sure that the IV line appears clear without cloudiness or precipitate.\n\n[Doc: Product B: Dosage Administration | Section: Overview & Context]\n\nCommon Adverse Reactions:\nHypotension (Systolic BP < 90 mmHg) | 18% | Mild to Moderate\nBradycardia (< 50 bpm) | 12% | Moderate\nHeadache | 9% | Mild\nDizziness / Lightheadedness | 7% | Mild\n\n[Doc: Product B: Adverse Reactions | Section: Common Adverse Reactions]\n\nNote: This summary only includes common adverse reactions and does not include serious or severe reactions.",
       "metrics": {
-        "lexical_precision": 0.1429,
-        "lexical_recall": 0.8438,
-        "lexical_f1": 0.2443,
-        "semantic_similarity": 0.8039
+        "lexical_precision": 0.134,
+        "lexical_recall": 0.8125,
+        "lexical_f1": 0.2301,
+        "semantic_similarity": 0.8305
       }
     },
     {
@@ -75,17 +73,16 @@
         "product-b-safety-information.dita",
         "product-b-adverse-reactions.dita",
         "product-b-clinical-overview.dita",
-        "product-b-dosage.dita",
-        "product-b-adverse-reactions.dita"
+        "product-b-dosage.dita"
       ],
       "hit_at_k": 1.0,
       "ground_truth_answer": "Product B is contraindicated in patients with severe hypersensitivity to Product B or its excipients, severe cardiogenic shock or uncompensated heart failure requiring inotropes, and second- or third-degree AV block without a functioning pacemaker.",
-      "generated_response": "Under what clinical conditions is Product B contraindicated?\n\nProduct B is contraindicated in patients with the following conditions:\n\n* Known severe hypersensitivity to Product B or any of its excipients. [Doc: Product B: Contraindications and Precautions | Section: Contraindications]\n* Severe cardiogenic shock or uncompensated heart failure requiring inotropic support. [Doc: Product B: Contraindications and Precautions | Section: Contraindications]\n* Second-degree or third-degree atrioventricular (AV) block in the absence of a functioning pacemaker. [Doc: Product B: Contraindications and Precautions | Section: Contraindications]\n\n[Citation: Doc: Product B: Contraindications and Precautions | Section: Contraindications]",
+      "generated_response": "Under what clinical conditions is Product B contraindicated?\n\nProduct B is contraindicated in patients with:\n- Known severe hypersensitivity to Product B or any of its excipients.\n- Severe cardiogenic shock or uncompensated heart failure requiring inotropic support.\n- Second-degree or third-degree atrioventricular (AV) block in the absence of a functioning pacemaker.\n\n[Doc: Product B: Contraindications and Precautions | Section: Contraindications]",
       "metrics": {
-        "lexical_precision": 0.3793,
+        "lexical_precision": 0.5593,
         "lexical_recall": 0.9429,
-        "lexical_f1": 0.541,
-        "semantic_similarity": 0.879
+        "lexical_f1": 0.7021,
+        "semantic_similarity": 0.9024
       }
     },
     {
@@ -102,17 +99,16 @@
         "product-b-clinical-overview.dita",
         "product-b-safety-information.dita",
         "product-b-adverse-reactions.dita",
-        "product-b-safety-information.dita",
-        "product-b-dosage.dita"
+        "product-b-safety-information.dita"
       ],
       "hit_at_k": 1.0,
       "ground_truth_answer": "Product B selectively binds to cardiovascular receptors to reduce inflammation, improve vasodilation, and potentiate natural vasodilators.",
-      "generated_response": "How does Product B work in the cardiovascular system?\n\nProduct B works by selectively binding to specific receptors in the cardiovascular system, thereby:\n- Reducing inflammation.\n- Improving vasodilation.\n- Potentiating the effects of natural vasodilators. [Doc: Product B: Clinical Overview | Section: Mechanism of Action]\n\nNote: This response only includes information from the 'Mechanism of Action' section and does not include any additional information or extrapolation.",
+      "generated_response": "How does Product B work in the cardiovascular system?\n\nProduct B works by selectively binding to specific receptors in the cardiovascular system, thereby:\n- Reducing inflammation.\n- Improving vasodilation.\n- Potentiating the effects of natural vasodilators.\n\n[Doc: Product B: Clinical Overview | Section: Mechanism of Action]",
       "metrics": {
-        "lexical_precision": 0.1746,
-        "lexical_recall": 0.6875,
-        "lexical_f1": 0.2785,
-        "semantic_similarity": 0.8489
+        "lexical_precision": 0.2381,
+        "lexical_recall": 0.625,
+        "lexical_f1": 0.3448,
+        "semantic_similarity": 0.854
       }
     },
     {
@@ -129,17 +125,16 @@
         "product-a-clinical-overview.dita",
         "product-a-adverse-reactions.dita",
         "product-a-safety-information.dita",
-        "product-a-safety-information.dita",
-        "product-a-dosage.dita"
+        "product-a-safety-information.dita"
       ],
       "hit_at_k": 1.0,
       "ground_truth_answer": "Product A is an oncology drug designed to target specific pathways in oncology conditions.",
-      "generated_response": "What is the clinical overview and mechanism for Product A?\n\nProduct A is an oral medication that targets specific molecular pathways in cancer cells, leading to their inhibition or elimination. [Doc: Product A: Clinical Overview | Section: Product Description]\n\nProduct A works by selectively inhibiting the activity of key oncogenic proteins, thereby reducing cancer cell proliferation and survival. The drug's mechanism of action is characterized by its ability to:\n- Inhibit the activity of oncogenic kinases.\n- Induce apoptosis in cancer cells.\n- Impede angiogenesis, thereby reducing blood supply to tumors. [Doc: Product A: Clinical Overview | Section: Mechanism of Action]\n\nNote: No additional information from 'Safety Information', 'Dosage Administration', and 'Adverse Reactions' sections was included as per instructions.",
+      "generated_response": "Here is the structured summary of Product A based on the retrieved DITA topics:\n\n**Clinical Overview and Mechanism for Product A**\n\nProduct A is an oral medication that targets specific molecular pathways in cancer cells, leading to their inhibition or elimination [Doc: Product A: Clinical Overview | Section: Product Description]. It works by selectively inhibiting the activity of key oncogenic proteins, thereby reducing cancer cell proliferation and survival. The drug's mechanism of action is characterized by its ability to:\n\n* Inhibit the activity of oncogenic kinases.\n* Induce apoptosis in cancer cells.\n* Impede angiogenesis, thereby reducing blood supply to tumors [Doc: Product A: Clinical Overview | Section: Mechanism of Action].\n\n**Note:** This response only includes information from the provided DITA context chunks and does not include any external medical knowledge or extrapolation.",
       "metrics": {
-        "lexical_precision": 0.0783,
+        "lexical_precision": 0.0698,
         "lexical_recall": 0.6429,
-        "lexical_f1": 0.1395,
-        "semantic_similarity": 0.7907
+        "lexical_f1": 0.1259,
+        "semantic_similarity": 0.7737
       }
     },
     {

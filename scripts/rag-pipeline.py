@@ -118,7 +118,7 @@ class PharmaRAGPipeline:
         category: str | None = None,
         target_audience: str = "HCP",
         intent: str | None = None,
-        k: int = 6,
+        k: int = 5,
     ) -> dict[str, Any]:
         print(f"[Query] User Question: '{query_text}'")
         
@@ -188,6 +188,7 @@ class PharmaRAGPipeline:
             temperature=llm_kwargs.get("temperature", 0.0),
             top_p=llm_kwargs.get("top_p", 0.9),
             repeat_penalty=1.1,
+            stop=["Would you like", "User Query:", "---"],
             base_url=OLLAMA_BASE_URL,
         )
 
