@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="product_a_common_adverse_reactions" audience="hcp oncologist" product="product_a" otherprops="common_adverse_reactions">
+  <title>Product A: Common Adverse Reactions</title>
+  <shortdesc>Summary of clinical trial and post-marketing common adverse reactions observed with Product A.</shortdesc>
+  <refbody>
+    <section id="common_adverse_reactions_summary">
+      <title>Summary of Common Adverse Reactions for Product A</title>
+      <p>Clinically common adverse reactions occurred in ≥ 5% of patients of Product A include:</p>
+      <ul>
+        <li>Neutropenia: Reported in 68% of patients across all grades (32% Grade 3–4).</li>
+        <li>Fatigue: Reported in 54% of patients across all grades (8% Grade 3–4).</li>
+        <li>Nausea and Vomiting: Reported in 42% of patients across all grades (4% Grade 3–4).</li>
+        <li>Thrombocytopenia: Reported in 28% of patients across all grades (12% Grade 3–4).</li>
+      </ul>
+    </section>
+    <section id="internal_notes" otherprops="internal_notes">
+      <title>Internal Review Notes</title>
+      <p>These notes are intended for internal regulatory review and should not be included in patient-facing materials.</p>
+      <p>Adverse reaction data is based on clinical trial populations; post-marketing surveillance may yield additional insights.</p>
+      <p>Ensure that all adverse reaction frequencies are updated in accordance with the latest clinical trial data and post-marketing reports.</p>
+    </section>
+  </refbody>
+</reference>

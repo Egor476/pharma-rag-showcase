@@ -5,11 +5,13 @@
   <topicref href="topics/oncology/product-a-clinical-overview.dita" format="dita">
     <topicref href="topics/oncology/product-a-safety-information.dita" format="dita"/>
     <topicref href="topics/oncology/product-a-dosage.dita" format="dita"/>
-    <topicref href="topics/oncology/product-a-adverse-reactions.dita" format="dita"/>
+    <topicref href="topics/oncology/product-a-common-adverse-reactions.dita" format="dita"/>
+    <topicref href="topics/oncology/product-a-serious-adverse-reactions.dita" format="dita"/>
   </topicref>
   <topicref href="topics/cardiology/product-b-clinical-overview.dita" format="dita">
     <topicref href="topics/cardiology/product-b-safety-information.dita" format="dita"/>
     <topicref href="topics/cardiology/product-b-dosage.dita" format="dita"/>
-    <topicref href="topics/cardiology/product-b-adverse-reactions.dita" format="dita"/>
+    <topicref href="topics/cardiology/product-b-common-adverse-reactions.dita" format="dita"/>
+    <topicref href="topics/cardiology/product-b-serious-adverse-reactions.dita" format="dita"/>
   </topicref>
 </map>  

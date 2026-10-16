@@ -68,16 +68,31 @@ class PharmaRAGPipeline:
             return explicit_intent
 
         q = query.lower()
+        
+        # 1. Inspect JSON prompt configs for trigger keywords dynamically
+        for task_type, rel_path in TASK_PROMPT_MAP.items():
+            if task_type == "fallback_unrelated":
+                continue
+            
+            try:
+                prompt_data = self._load_json(PROMPT_LIBRARY_DIR / rel_path)
+                triggers = prompt_data.get("retrieval_config", {}).get("trigger_keywords", [])
+                if any(trig in q for trig in triggers):
+                    return task_type
+            except Exception:
+                continue
+
+        # 2. Fallback keyword safety nets to ensure common medical inquiries route properly
         if any(k in q for k in ["adverse", "side effect", "reaction", "hypotension", "bradycardia"]):
             return "adverse_reactions"
         elif any(k in q for k in ["dosage", "dose", "administer", "mg/kg", "flush", "iv"]):
             return "dosage_administration"
         elif any(k in q for k in ["contraindication", "precaution", "warning", "safety"]):
             return "safety_information"
-        elif any(k in q for k in ["overview", "indication", "mechanism", "action", "description"]):
+        elif any(k in q for k in ["overview", "indication", "mechanism", "action", "description", "work", "how does"]):
             return "clinical_overview"
-        else:
-            return "fallback_unrelated"
+
+        return "fallback_unrelated"
 
     def _get_prompt_config(self, task_type: str) -> dict[str, Any]:
         rel_path = TASK_PROMPT_MAP.get(task_type, TASK_PROMPT_MAP["fallback_unrelated"])
@@ -98,6 +113,7 @@ class PharmaRAGPipeline:
             "template": combined_template,
             "model_config": task_prompt_data.get("model_config", {"model": OLLAMA_MODEL_NAME, "temperature": 0.0}),
             "variables": task_prompt_data.get("variables", ["query", "product", "target_audience", "context_chunks"]),
+            "retrieval_config": task_prompt_data.get("retrieval_config", {}),
         }
 
     def _format_docs(self, docs: list[Any]) -> str:
@@ -118,7 +134,7 @@ class PharmaRAGPipeline:
         category: str | None = None,
         target_audience: str = "HCP",
         intent: str | None = None,
-        k: int = 5,
+        k: int = 3,
     ) -> dict[str, Any]:
         print(f"[Query] User Question: '{query_text}'")
         
@@ -141,31 +157,53 @@ class PharmaRAGPipeline:
 
         print(f"[Query] Target Product Identified: {product_display} (Filter key: {prod_key})")
 
-        # 3. Build Metadata Filter
-        filter_conditions: list[dict[str, Any]] = []
-        if category:
-            filter_conditions.append({"category": {"$eq": category.lower()}})
-        if prod_key:
-            filter_conditions.append({"product": {"$eq": prod_key}})
+        # 3. Build Metadata Filter & Retrieve Chunks
+        retrieval_config = prompt_config.get("retrieval_config", {})
+        target_sections = retrieval_config.get("target_sections", [])
 
-        if len(filter_conditions) == 1:
-            metadata_filter: dict[str, Any] | None = filter_conditions[0]
-        elif len(filter_conditions) > 1:
-            metadata_filter = {"$and": filter_conditions}
-        else:
-            metadata_filter = None
-
-        # 4. Vector Retrieval
         if task_type == "fallback_unrelated":
             print("[Query] Fallback intent detected. Skipping vector search.")
             retrieved_docs = []
         else:
-            retriever_args: dict[str, Any] = {"k": k}
-            if metadata_filter:
-                retriever_args["filter"] = metadata_filter
+            retrieved_docs = []
+            
+            # If broad query with multi-sections, split budget evenly across sections to prevent crowding
+            if target_sections:
+                docs_per_section = max(1, k // len(target_sections))
+                for sec in target_sections:
+                    sec_conditions: list[dict[str, Any]] = []
+                    if category:
+                        sec_conditions.append({"category": {"$eq": category.lower()}})
+                    if prod_key:
+                        sec_conditions.append({"product": {"$eq": prod_key}})
+                    sec_conditions.append({"section_title": {"$eq": sec}})
+                    
+                    sec_filter: dict[str, Any] = (
+                        {"$and": sec_conditions} if len(sec_conditions) > 1 else sec_conditions[0]
+                    )
+                    
+                    sec_docs = self.vectorstore.similarity_search(
+                        query_text, k=docs_per_section, filter=sec_filter
+                    )
+                    retrieved_docs.extend(sec_docs)
+            else:
+                filter_conditions: list[dict[str, Any]] = []
+                if category:
+                    filter_conditions.append({"category": {"$eq": category.lower()}})
+                if prod_key:
+                    filter_conditions.append({"product": {"$eq": prod_key}})
+                
+                metadata_filter = (
+                    {"$and": filter_conditions} if len(filter_conditions) > 1 
+                    else (filter_conditions[0] if filter_conditions else None)
+                )
+                
+                retriever_args: dict[str, Any] = {"k": k}
+                if metadata_filter:
+                    retriever_args["filter"] = metadata_filter
+                retrieved_docs = self.vectorstore.similarity_search(query_text, **retriever_args)
 
-            retrieved_docs = self.vectorstore.similarity_search(query_text, **retriever_args)
-
+        # Deduplicate retrieved chunks
         seen_contents = set()
         unique_docs = []
         for doc in retrieved_docs:
@@ -181,13 +219,14 @@ class PharmaRAGPipeline:
             print(f"-> Doc: {doc.metadata.get('title')} | Section: {doc.metadata.get('section_title')}")
         print("------------------------------------------\n")
 
-        # 5. LLM Chain Execution
+        # 4. LLM Chain Execution
         llm_kwargs = prompt_config.get("model_config", {})
         llm = ChatOllama(
             model=llm_kwargs.get("model", OLLAMA_MODEL_NAME),
             temperature=llm_kwargs.get("temperature", 0.0),
             top_p=llm_kwargs.get("top_p", 0.9),
-            repeat_penalty=1.1,
+            repeat_penalty=1.15,
+            num_predict=512,
             stop=["Would you like", "User Query:", "---"],
             base_url=OLLAMA_BASE_URL,
         )
@@ -195,7 +234,6 @@ class PharmaRAGPipeline:
         prompt_template = ChatPromptTemplate.from_template(prompt_config["template"])
         chain = prompt_template | llm | StrOutputParser()
 
-        # Build execution payload
         payload = {
             "query": query_text,
             "product": product_display,
@@ -226,8 +264,8 @@ if __name__ == "__main__":
     pipeline = PharmaRAGPipeline()
 
     print("\n" + "=" * 60)
-    print("RUNNING TEST QUERY 1: Product Overview for Product A")
+    print("RUNNING TEST QUERY: Common Adverse Reactions for Product B")
     print("=" * 60)
-    res3 = pipeline.query("What's the clinical overview for Product A?")
-    print("\n[RESPONSE 1]:\n")
-    print(res3["response"])
+    res = pipeline.query("What are the common adverse reactions for Product B?")
+    print("\n[RESPONSE]:\n")
+    print(res["response"])

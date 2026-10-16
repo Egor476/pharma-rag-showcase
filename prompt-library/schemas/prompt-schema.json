@@ -84,7 +84,8 @@
       "required": [
         "strict_grounding_required",
         "citation_required",
-        "prohibit_off_label"
+        "prohibit_off_label",
+        "target_audience"
       ],
       "properties": {
         "strict_grounding_required": {

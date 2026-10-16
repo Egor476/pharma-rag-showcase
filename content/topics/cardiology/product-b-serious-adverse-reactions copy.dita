@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="product_b_serious_adverse_reactions" audience="hcp cardiologist" product="product_b" otherprops="serious_adverse_reactions">
+  <title>Product B: Serious Adverse Reactions</title>
+  <shortdesc>Summary of clinical trial and post-marketing serious adverse reactions observed with Product B.</shortdesc>
+  <refbody>
+    <section id="serious_adverse_reactions_summary">
+      <title>Summary of Serious Adverse Reactions for Product B</title>
+      <p>Clinically significant adverse reactions requiring medical intervention or dosage modification include:</p>
+      <ul>
+        <li>Symptomatic AV Block: First-degree or Mobitz Type I AV block observed in 2% of patients. Discontinue infusion if high-grade AV block develops.</li>
+        <li>Severe Hypotension / Shock: Rapid BP drop requiring IV fluids or vasopressor support observed in 1.5% of patients.</li>
+        <li>Ventricular Arrhythmia: Isolated cases of non-sustained ventricular tachycardia reported during rapid intravenous bolus administration.</li>
+      </ul>
+    </section>
+    <section id="internal_notes" otherprops="internal_notes">
+      <title>Internal Review Notes</title>
+      <p>These notes are intended for internal regulatory review and should not be included in patient-facing materials.</p>
+      <p>Adverse reaction data is based on clinical trial populations; post-marketing surveillance may yield additional insights.</p>
+      <p>Ensure that all adverse reaction frequencies are updated in accordance with the latest clinical trial data and post-marketing reports.</p>
+    </section>
+  </refbody>
+</reference>

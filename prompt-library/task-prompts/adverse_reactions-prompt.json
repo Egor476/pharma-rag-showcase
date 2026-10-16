@@ -13,7 +13,13 @@
     "target_audience",
     "context_chunks"
   ],
-  "template": "Target Product: {product}\nTarget Audience: {target_audience}\nUser Query: {query}\n\nContext Chunks:\n{context_chunks}\n\nTask:\nAnswer the User Query using ONLY the provided DITA context chunks for {product}.\n\nInstructions:\n1. Match the exact section in the context chunks that corresponds to the User Query (e.g., if asked for serious adverse reactions, extract exclusively from sections titled 'Serious Adverse Reactions').\n2. Extract all clinical findings, percentages, and guidelines listed under that specific section.\n3. Do NOT reclassify common adverse reactions as serious, and do NOT include contraindications or precautions.\n4. Append citation [Doc: <title> | Section: <section_title>] to each category summary.\n5. Begin your response immediately with the requested summary content without any conversational filler or introductory remarks.",
+  "retrieval_config": {
+    "target_sections": [
+      "Summary of Common Adverse Reactions for Product B",
+      "Summary of Serious Adverse Reactions for Product B"
+    ]
+  },
+  "template": "Target Product: {product}\nTarget Audience: {target_audience}\nUser Query: {query}\n\nContext Chunks:\n{context_chunks}\n\nTask:\nAnswer the User Query using ONLY the provided DITA context chunks for {product}.\n\nInstructions:\n1. If the user query explicitly asks for 'serious adverse reactions', extract text EXCLUSIVELY from chunks related to Serious Adverse Reactions. \n2. If the user query explicitly asks for 'common adverse reactions', extract text EXCLUSIVELY from chunks related to Common Adverse Reactions.\n3. Extract all clinical findings, percentages, and guidelines listed under that specific section.\n4. Do NOT reclassify common adverse reactions as serious, and do NOT include contraindications or precautions.\n5. Append citation [Doc: <title> | Section: <section_title>] to each category summary.\n6. Begin your response immediately with the requested summary content without any conversational filler or introductory remarks.",
   "compliance_checks": {
     "strict_grounding_required": true,
     "citation_required": true,

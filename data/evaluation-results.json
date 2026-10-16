@@ -3,8 +3,8 @@
     "total_test_cases": 6,
     "intent_routing_accuracy": 1.0,
     "retrieval_hit_rate_at_k": 1.0,
-    "mean_lexical_f1_score": 0.4224,
-    "mean_semantic_similarity": 0.8366
+    "mean_lexical_f1_score": 0.4289,
+    "mean_semantic_similarity": 0.8458
   },
   "detailed_results": [
     {
@@ -14,23 +14,20 @@
       "detected_intent": "adverse_reactions",
       "intent_match": true,
       "expected_sources": [
-        "product-b-adverse-reactions.dita"
+        "product-b-common-adverse-reactions.dita"
       ],
       "retrieved_sources": [
-        "product-b-adverse-reactions.dita",
-        "product-b-safety-information.dita",
-        "product-b-safety-information.dita",
-        "product-b-clinical-overview.dita",
-        "product-b-dosage.dita"
+        "product-b-common-adverse-reactions.dita",
+        "product-b-serious-adverse-reactions copy.dita"
       ],
       "hit_at_k": 1.0,
       "ground_truth_answer": "Common adverse reactions occurring in \u2265 5% of patients for Product B include Hypotension (18%, mild to moderate), Bradycardia (12%, moderate), Headache (9%, mild), and Dizziness/Lightheadedness (7%, mild).",
-      "generated_response": "Common Adverse Reactions:\n\nThe following adverse reactions occurred in \u2265 5% of patients during clinical evaluation of Product B:\nHypotension (Systolic BP < 90 mmHg) | 18% | Mild to Moderate\nBradycardia (< 50 bpm) | 12% | Moderate\nHeadache | 9% | Mild\nDizziness / Lightheadedness | 7% | Mild\n\n[Doc: Product B: Adverse Reactions | Section: Common Adverse Reactions]",
+      "generated_response": "What are the common adverse reactions reported for Product B?\n\nClinically common adverse reactions occurred in \u2265 5% of patients of Product B include:\n- Hypotension (Systolic BP < 90 mmHg): Occurred in 18% of patients (Mild to Moderate severity).\n- Bradycardia (< 50 bpm): Occurred in 12% of patients (Moderate severity).\n- Headache: Occurred in 9% of patients (Mild severity).\n- Dizziness / Lightheadedness: Occurred in 7% of patients (Mild severity).\n\n[Doc: Product B: Common Adverse Reactions | Section: Summary of Common Adverse Reactions for Product B]",
       "metrics": {
-        "lexical_precision": 0.5,
-        "lexical_recall": 0.8571,
-        "lexical_f1": 0.6316,
-        "semantic_similarity": 0.9069
+        "lexical_precision": 0.3291,
+        "lexical_recall": 0.9286,
+        "lexical_f1": 0.486,
+        "semantic_similarity": 0.8964
       }
     },
     {
@@ -45,18 +42,16 @@
       "retrieved_sources": [
         "product-b-dosage.dita",
         "product-b-safety-information.dita",
-        "product-b-clinical-overview.dita",
-        "product-b-adverse-reactions.dita",
-        "product-b-safety-information.dita"
+        "product-b-common-adverse-reactions.dita"
       ],
       "hit_at_k": 1.0,
       "ground_truth_answer": "Product B is administered at a dose of 2 mg/kg IV over 10 minutes. The IV line must be flushed with 0.9% sodium chloride injection both before and after administration.",
-      "generated_response": "The recommended dosing schedule and administration procedure for Product B are as follows:\n\nConfirm patient's eligibility for Product B treatment.\nStep 1: Calculate the total dose of Product B based on the patient's weight (2 mg/kg). (Example: For example, a 70 kg patient requires a total dose of 140 mg (70 kg \u00d7 2 mg/kg).)\nStep 2: Flush IV line with 0.9% sodium chloride injection before administration. Result: Make sure that the IV line appears clear without cloudiness or precipitate.\nStep 3: Administer Product B at a dose of 2 mg/kg IV over 10 minutes. Note: Monitor patient's vital signs and adjust dosage as necessary.\nStep 4: Flush IV line with 0.9% sodium chloride injection after administration. Result: Make sure that the IV line appears clear without cloudiness or precipitate.\n\n[Doc: Product B: Dosage Administration | Section: Overview & Context]\n\nCommon Adverse Reactions:\nHypotension (Systolic BP < 90 mmHg) | 18% | Mild to Moderate\nBradycardia (< 50 bpm) | 12% | Moderate\nHeadache | 9% | Mild\nDizziness / Lightheadedness | 7% | Mild\n\n[Doc: Product B: Adverse Reactions | Section: Common Adverse Reactions]\n\nNote: This summary only includes common adverse reactions and does not include serious or severe reactions.",
+      "generated_response": "Recommended dosing schedule and administration procedure for Product B:\n\nConfirm patient's eligibility for Product B treatment.\n\nStep 1: Calculate the total dose of Product B based on the patient's weight (2 mg/kg). Example: For a 70 kg patient, requires a total dose of 140 mg (70 kg \u00d7 2 mg/kg).\n\nStep 2: Flush IV line with 0.9% sodium chloride injection before administration. Result: Make sure that the IV line appears clear without cloudiness or precipitate.\n\nStep 3: Administer Product B at a dose of 2 mg/kg IV over 10 minutes. Note: Monitor patient's vital signs and adjust dosage as necessary.\n\nStep 4: Flush IV line with 0.9% sodium chloride injection after administration. Result: Make sure that the IV line appears clear without cloudiness or precipitate.[Doc: Product B: Dosage Administration | Section: Overview & Context]\n\nCommon Adverse Reactions:\n\nClinically common adverse reactions occurred in \u2265 5% of patients include:\n- Hypotension (Systolic BP < 90 mmHg): Occurred in 18% of patients (Mild to Moderate severity).[Doc: Product B: Common Adverse Reactions | Section: Summary of Common Adverse Reactions for Product B]\n- Bradycardia (< 50 bpm): Occurred in 12% of patients (Moderate severity).[Doc: Product B: Common Adverse Reactions | Section: Summary of Common Adverse Reactions for Product B]\n- Headache: Occurred in 9% of patients (Mild severity).[Doc: Product B: Common Adverse Reactions | Section: Summary of Common Adverse Reactions for Product B]\n- Dizziness / Lightheadedness: Occurred in 7% of patients (Mild severity).[Doc: Product B: Common Adverse Reactions | Section: Summary of Common Adverse Reactions for Product B]",
       "metrics": {
-        "lexical_precision": 0.134,
+        "lexical_precision": 0.1024,
         "lexical_recall": 0.8125,
-        "lexical_f1": 0.2301,
-        "semantic_similarity": 0.8305
+        "lexical_f1": 0.1818,
+        "semantic_similarity": 0.8415
       }
     },
     {
@@ -71,9 +66,7 @@
       "retrieved_sources": [
         "product-b-safety-information.dita",
         "product-b-safety-information.dita",
-        "product-b-adverse-reactions.dita",
-        "product-b-clinical-overview.dita",
-        "product-b-dosage.dita"
+        "product-b-common-adverse-reactions.dita"
       ],
       "hit_at_k": 1.0,
       "ground_truth_answer": "Product B is contraindicated in patients with severe hypersensitivity to Product B or its excipients, severe cardiogenic shock or uncompensated heart failure requiring inotropes, and second- or third-degree AV block without a functioning pacemaker.",
@@ -97,9 +90,7 @@
       "retrieved_sources": [
         "product-b-clinical-overview.dita",
         "product-b-clinical-overview.dita",
-        "product-b-safety-information.dita",
-        "product-b-adverse-reactions.dita",
-        "product-b-safety-information.dita"
+        "product-b-common-adverse-reactions.dita"
       ],
       "hit_at_k": 1.0,
       "ground_truth_answer": "Product B selectively binds to cardiovascular receptors to reduce inflammation, improve vasodilation, and potentiate natural vasodilators.",
@@ -123,18 +114,16 @@
       "retrieved_sources": [
         "product-a-clinical-overview.dita",
         "product-a-clinical-overview.dita",
-        "product-a-adverse-reactions.dita",
-        "product-a-safety-information.dita",
         "product-a-safety-information.dita"
       ],
       "hit_at_k": 1.0,
-      "ground_truth_answer": "Product A is an oncology drug designed to target specific pathways in oncology conditions.",
-      "generated_response": "Here is the structured summary of Product A based on the retrieved DITA topics:\n\n**Clinical Overview and Mechanism for Product A**\n\nProduct A is an oral medication that targets specific molecular pathways in cancer cells, leading to their inhibition or elimination [Doc: Product A: Clinical Overview | Section: Product Description]. It works by selectively inhibiting the activity of key oncogenic proteins, thereby reducing cancer cell proliferation and survival. The drug's mechanism of action is characterized by its ability to:\n\n* Inhibit the activity of oncogenic kinases.\n* Induce apoptosis in cancer cells.\n* Impede angiogenesis, thereby reducing blood supply to tumors [Doc: Product A: Clinical Overview | Section: Mechanism of Action].\n\n**Note:** This response only includes information from the provided DITA context chunks and does not include any external medical knowledge or extrapolation.",
+      "ground_truth_answer": "Product A is an oral medication that targets specific molecular pathways to inhibit or eliminate cancer cells. Its mechanism of action involves selectively inhibiting key oncogenic kinases, inducing apoptosis, and impeding tumor angiogenesis to reduce cancer cell proliferation and survival.",
+      "generated_response": "Here is the structured summary of Product A based on the retrieved DITA context chunks:\n\n**Clinical Overview and Mechanism for Product A**\n\nProduct A is an oral medication that targets specific molecular pathways in cancer cells, leading to their inhibition or elimination [Doc: Product A: Clinical Overview | Section: Product Description]. It works by selectively inhibiting the activity of key oncogenic proteins, thereby reducing cancer cell proliferation and survival. The drug's mechanism of action is characterized by its ability to:\n\n* Inhibit the activity of oncogenic kinases.\n* Induce apoptosis in cancer cells.\n* Impede angiogenesis, thereby reducing blood supply to tumors [Doc: Product A: Clinical Overview | Section: Mechanism of Action].\n\nNote: I have followed the instructions strictly and only included information from the provided context chunks.",
       "metrics": {
-        "lexical_precision": 0.0698,
-        "lexical_recall": 0.6429,
-        "lexical_f1": 0.1259,
-        "semantic_similarity": 0.7737
+        "lexical_precision": 0.2742,
+        "lexical_recall": 0.85,
+        "lexical_f1": 0.4146,
+        "semantic_similarity": 0.8802
       }
     },
     {
@@ -147,12 +136,12 @@
       "retrieved_sources": [],
       "hit_at_k": 1.0,
       "ground_truth_answer": "I do not have access to clinical or logistics information regarding storage or shipping guidelines in the current DITA library.",
-      "generated_response": "The current DITA documentation library does not contain clinical or logistics information on the requested topic.",
+      "generated_response": "The current DITA documentation library does not contain clinical or logistical information on the requested topic.",
       "metrics": {
-        "lexical_precision": 0.5625,
-        "lexical_recall": 0.45,
-        "lexical_f1": 0.5,
-        "semantic_similarity": 0.7521
+        "lexical_precision": 0.5,
+        "lexical_recall": 0.4,
+        "lexical_f1": 0.4444,
+        "semantic_similarity": 0.7006
       }
     }
   ]

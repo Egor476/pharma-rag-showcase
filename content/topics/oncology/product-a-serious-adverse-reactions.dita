@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="product_a_serious_adverse_reactions" audience="hcp oncologist" product="product_a" otherprops="serious_adverse_reactions">
+  <title>Product A: Serious Adverse Reactions</title>
+  <shortdesc>Summary of clinical trial and post-marketing serious adverse reactions observed with Product A.</shortdesc>
+  <refbody>
+    <section id="serious_adverse_reactions_summary">
+      <title>Summary of Serious Adverse Reactions for Product A</title>
+      <p>Clinically significant adverse reactions requiring medical intervention or dosage modification include:</p>
+      <ul>
+        <li>Febrile Neutropenia: Occurred in 5% of patients. Discontinue treatment immediately and initiate broad-spectrum anti-infectives.</li>
+        <li>Hepatotoxicity: Elevated transaminases (ALT/AST &gt; 5x ULN) observed in 3% of patients. Dose interruption or reduction required.</li>
+        <li>Infusion-Related Reactions: Severe hypersensitivity occurred in 2% of patients during initial infusion.</li>
+      </ul>
+    </section>
+    <section id="internal_notes" otherprops="internal_notes">
+      <title>Internal Review Notes</title>
+      <p>These notes are intended for internal regulatory review and should not be included in patient-facing materials.</p>
+      <p>Adverse reaction data is based on clinical trial populations; post-marketing surveillance may yield additional insights.</p>
+      <p>Ensure that all adverse reaction frequencies are updated in accordance with the latest clinical trial data and post-marketing reports.</p>
+    </section>
+  </refbody>
+</reference>

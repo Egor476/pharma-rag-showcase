@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="product_b_common_adverse_reactions" audience="hcp cardiologist" product="product_b" otherprops="common_adverse_reactions">
+  <title>Product B: Common Adverse Reactions</title>
+  <shortdesc>Summary of clinical trial and post-marketing common adverse reactions observed with Product B.</shortdesc>
+  <refbody>
+    <section id="common_adverse_reactions_summary">
+      <title>Summary of Common Adverse Reactions for Product B</title>
+      <p>Clinically common adverse reactions occurred in ≥ 5% of patients of Product B include:</p>
+      <ul>
+        <li>Hypotension (Systolic BP &lt; 90 mmHg): Occurred in 18% of patients (Mild to Moderate severity).</li>
+        <li>Bradycardia (&lt; 50 bpm): Occurred in 12% of patients (Moderate severity).</li>
+        <li>Headache: Occurred in 9% of patients (Mild severity).</li>
+        <li>Dizziness / Lightheadedness: Occurred in 7% of patients (Mild severity).</li>
+      </ul>
+      </section>
+    <section id="internal_notes" otherprops="internal_notes">
+      <title>Internal Review Notes</title>
+      <p>These notes are intended for internal regulatory review and should not be included in patient-facing materials.</p>
+      <p>Adverse reaction data is based on clinical trial populations; post-marketing surveillance may yield additional insights.</p>
+      <p>Ensure that all adverse reaction frequencies are updated in accordance with the latest clinical trial data and post-marketing reports.</p>
+    </section>
+  </refbody>
+</reference>

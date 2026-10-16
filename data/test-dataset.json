@@ -13,11 +13,11 @@
       "category": "cardiology",
       "target_audience": "HCP",
       "expected_sources": [
-        "product-b-adverse-reactions.dita"
+        "product-b-common-adverse-reactions.dita"
       ],
-      "expected_section": "Common Adverse Reactions",
+      "expected_section": "Summary of Common Adverse Reactions for Product B",
       "ground_truth_context": [
-        "The following adverse reactions occurred in ≥ 5% of patients during clinical evaluation of Product B: Hypotension (Systolic BP < 90 mmHg) | 18% | Mild to Moderate, Bradycardia (< 50 bpm) | 12% | Moderate, Headache | 9% | Mild, Dizziness / Lightheadedness | 7% | Mild"
+        "Clinically common adverse reactions occurred in ≥ 5% of patients of Product B include: Hypotension (Systolic BP < 90 mmHg): Occurred in 18% of patients (Mild to Moderate severity), Bradycardia (< 50 bpm): Occurred in 12% of patients (Moderate severity), Headache: Occurred in 9% of patients (Mild severity), Dizziness / Lightheadedness: Occurred in 7% of patients (Mild severity)."
       ],
       "ground_truth_answer": "Common adverse reactions occurring in ≥ 5% of patients for Product B include Hypotension (18%, mild to moderate), Bradycardia (12%, moderate), Headache (9%, mild), and Dizziness/Lightheadedness (7%, mild)."
     },
